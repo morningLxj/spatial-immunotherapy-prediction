@@ -129,6 +129,11 @@ See [docs/data_notes.md](docs/data_notes.md) for expected local paths and tracki
 - Final table naming and wording now match the latest submission package, including the updated Table 3 title and Supplementary Table 10 column labels.
 - See [docs/latest_submission_sync.md](docs/latest_submission_sync.md) for a concise summary of the repository refresh.
 
+## Repository Metadata
+
+- Citation metadata: [`CITATION.cff`](CITATION.cff)
+- Reproducibility checklist: [docs/reproducibility_checklist.md](docs/reproducibility_checklist.md)
+
 ## Citation
 
 If you use this repository, please cite the manuscript version associated with the latest submission package.
