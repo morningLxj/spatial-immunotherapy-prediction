@@ -1,94 +1,140 @@
-# Spatial-Causal Integration Reveals Complement C1q Hotspots as Drivers of Immunotherapy Response in Non-Small Cell Lung Cancer
+# A Causal Inference-Guided Spatial Immune Framework Centered on C1Q in Non-Small Cell Lung Cancer
 
-## 📖 Abstract
+This repository contains the curated analysis scripts, figure rebuild utilities, and reporting pipeline for our NSCLC study on C1Q-centered spatial immune organization.
 
-This repository contains the source code and analysis pipeline for the paper **"Spatial-Causal Integration Reveals Complement C1q Hotspots as Drivers of Immunotherapy Response in Non-Small Cell Lung Cancer"**.
+The current repository state has been updated to match the latest submission-ready analysis package:
 
-We established a comprehensive "Spatial-Causal" framework integrating multi-omics data from 1,100 NSCLC patients (TCGA) with rigorous statistical and spatial validation. To ensure reproducibility and combat overfitting, we employed a LASSO-based feature selection within a 5-fold nested cross-validation (nested CV) framework to screen for robust molecular features. Causal regulatory networks were constructed using Mendelian randomization (MR) with immune cell-specific eQTL data. We further resolved the spatial architecture of identified targets using 10x Genomics Visium spatial transcriptomics and the GigaTIME deep learning model.
+- `95` robust features retained under nested cross-validation
+- `198` genes prioritized by Mendelian randomization
+- final prognostic model updated to `XGBoost`
+- final main and supplementary tables generated from a unified reporting script
+- figure wording and table labels synchronized with the latest manuscript language
 
-## 🚀 Key Findings
+## Study Overview
 
-- **Robust Biomarkers**: Identified 91 robust genes (including *ACP5* and *KCNAB2*) selected in 100% of nested CV folds.
-- **Causal Drivers**: Validated 198 causal genes via Mendelian randomization, linking *KCNAB2* and *C1QA* to immune phenotypes.
-- **Spatial Hotspots**: Revealed that C1q family members form distinct "immune hotspots" (Moran's I > 0.35) that co-localize with macrophages.
-- **Clinical Prediction**: The derived AdaBoost model significantly outperforms standard clinical baselines (AUC=0.743).
+We developed a conservative multi-layer framework that integrates:
 
-## 📂 Project Structure
+- nested cross-validation and stability-driven feature discovery
+- Mendelian randomization for directionally informative genetic support
+- spatial transcriptomics from Visium and CosMx datasets
+- in silico perturbation and mediation analysis
+- prognostic and exploratory external validation
 
-```
+Rather than relying on a single analysis layer, the project emphasizes convergence across genetic, spatial, and clinical evidence.
+
+## Current Key Results
+
+- **Feature robustness**: `95` features were retained across nested resampling.
+- **Genetic prioritization**: `198` genes showed putative immune-related MR support.
+- **Spatial organization**: C1Q family genes form structured immune hotspots, while `SPP1` marks a distinct exclusion-associated niche.
+- **Perturbation consistency**: computational attenuation of the C1Q axis weakens hotspot organization in a graded manner.
+- **Clinical modeling**: `XGBoost` was selected as the final model based on the best cross-validated AUC in the TCGA training cohort.
+- **External validation**: the harmonized risk score remained prognostically relevant in `GSE31210`, with exploratory assessment in immunotherapy-related cohorts.
+
+## Repository Layout
+
+```text
 spatial-immunotherapy-prediction/
-├── code/
-│   ├── 01_preprocessing/          # Data cleaning and normalization scripts
-│   ├── 02_feature_selection/      # Nested Cross-Validation & LASSO implementation
-│   ├── 03_mendelian_randomization/# MR analysis using TwoSampleMR (R)
-│   ├── 04_spatial_analysis/       # Spatial transcriptomics (Visium) & GigaTIME integration
-│   ├── 05_validation/             # External validation (GSE31210) & Pan-cancer analysis
-│   └── 06_plotting/               # Scripts to reproduce manuscript figures (Fig 1-8)
-├── data/                          # Placeholder for raw/processed data (see Data Availability)
-├── results/                       # Output tables and intermediate files
-├── requirements.txt               # Python dependencies
-└── README.md                      # This file
+|-- code/
+|   |-- 02_feature_selection/
+|   |-- 03_mendelian_randomization/
+|   |-- 04_spatial_analysis/
+|   |-- 05_validation/
+|   |-- 06_plotting/
+|   `-- 07_reporting/
+|-- data/
+|   |-- raw/
+|   `-- processed/
+|-- docs/
+|-- results/
+|   |-- figures/
+|   |-- tables/
+|   `-- audits/
+|-- .gitignore
+|-- LICENSE
+|-- README.md
+`-- requirements.txt
 ```
 
-## 🛠️ Installation & Usage
+See [docs/repository_layout.md](docs/repository_layout.md) for the mapping between the repository and the latest manuscript-ready workspace assets.
 
-### 1. Prerequisites
-- Python 3.8+
-- R 4.0+ (for MR analysis)
+## Included Code Tracks
 
-### 2. Python Environment
+- `code/02_feature_selection/`: robust feature selection and nested CV utilities
+- `code/03_mendelian_randomization/`: MR analysis scripts
+- `code/04_spatial_analysis/`: spatial preprocessing and Visium-related analysis
+- `code/05_validation/`: external validation and pan-cancer summary scripts
+- `code/06_plotting/`: final figure rebuild scripts used to align manuscript figures with the latest wording
+- `code/07_reporting/`: final table generation and manuscript formatting scripts
+
+## Quick Start
+
+### Python
+
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. R Dependencies
-The Mendelian randomization analysis requires the `TwoSampleMR` package:
-```R
+### R
+
+The MR workflow depends on `TwoSampleMR` and common tidyverse tooling:
+
+```r
 install.packages("remotes")
 remotes::install_github("MRCIEU/TwoSampleMR")
-install.packages("tidyverse")
+install.packages(c("tidyverse", "data.table"))
 ```
 
-### 4. Running the Analysis
+## Reproducing Final Reporting Assets
 
-**Feature Selection (Nested CV):**
+### Rebuild the unified tables
+
 ```bash
-# Run LASSO feature selection with nested CV
-python code/02_feature_selection/run_nested_cv.py
+python code/07_reporting/rebuild_tables_and_docs.py --root <workspace_root> --out <output_dir>
 ```
 
-**Mendelian Randomization:**
-```R
-# Run MR analysis (requires R)
-Rscript code/03_mendelian_randomization/mr_full_analysis.R
-```
+### Recompute the XGBoost repeated-CV AUC distribution
 
-**Spatial Analysis:**
 ```bash
-# Process Visium data and calculate Moran's I
-python code/04_spatial_analysis/prepare_visium.py
+python code/05_validation/append_xgboost_auc_distribution.py --root <workspace_root> --out-dir <output_dir>
 ```
 
-**Reproduce Figures:**
+### Rebuild manuscript figures
+
 ```bash
-python code/06_plotting/generate_figure2.py
-python code/06_plotting/create_figure7.py
-# ... and other scripts in 06_plotting/
+python code/06_plotting/rebuild_figure1.py
+python code/06_plotting/rebuild_figure2.py
+python code/06_plotting/rebuild_figure3.py
+python code/06_plotting/rebuild_figure4.py
+python code/06_plotting/rebuild_figure5.py
+python code/06_plotting/rebuild_figure6.py
+python code/06_plotting/rebuild_figure7.py
 ```
 
-## 📊 Data Availability
+## Data Availability
+
+Large source datasets and manuscript output files are not tracked in this repository.
 
 - **TCGA NSCLC**: [NCI GDC Data Portal](https://portal.gdc.cancer.gov)
-- **GEO Datasets**: GSE31210, GSE126044, GSE135222 ([NCBI GEO](https://www.ncbi.nlm.nih.gov/geo/))
-- **eQTL Data**: [eQTL Catalogue](https://www.ebi.ac.uk/eqtl/)
-- **Spatial Data**: 10x Genomics Demonstration Data
+- **GEO cohorts**: `GSE31210`, `GSE126044`, `GSE135222`, `GSE91061`
+- **eQTL resources**: [eQTL Catalogue](https://www.ebi.ac.uk/eqtl/)
+- **Spatial transcriptomics**: 10x Genomics Visium and CosMx-compatible resources used in the local analysis workspace
 
-## 📝 Citation
+See [docs/data_notes.md](docs/data_notes.md) for expected local paths and tracking policy.
 
-If you use this code or findings in your research, please cite:
+## Status Notes
 
-> **Li X, Zhang F, Zheng X, Xu X, Luo C.** Spatial-Causal Integration Reveals Complement C1q Hotspots as Drivers of Immunotherapy Response in Non-Small Cell Lung Cancer. *Cancer Cell International* (Under Review).
+- This repository is a curated code-and-documentation layer, not a mirror of the entire local workspace.
+- Intermediate logs, large result files, manuscript binaries, and private/raw datasets are intentionally excluded.
+- Final table naming and wording now match the latest submission package, including the updated Table 3 title and Supplementary Table 10 column labels.
+- See [docs/latest_submission_sync.md](docs/latest_submission_sync.md) for a concise summary of the repository refresh.
 
-## 📄 License
+## Citation
+
+If you use this repository, please cite the manuscript version associated with the latest submission package.
+
+> Li X, Zhang F, Zheng X, Xu X, Luo C. A Causal Inference-Guided Spatial Immune Framework Centered on C1Q in Non-Small Cell Lung Cancer. Under review.
+
+## License
 
 This project is licensed under the MIT License.

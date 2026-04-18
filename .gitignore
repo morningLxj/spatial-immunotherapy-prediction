@@ -37,6 +37,12 @@ data/raw/*
 data/processed/*
 !data/raw/.gitkeep
 !data/processed/.gitkeep
+results/figures/*
+results/tables/*
+results/audits/*
+!results/figures/.gitkeep
+!results/tables/.gitkeep
+!results/audits/.gitkeep
 *.h5ad
 *.csv
 *.gz
@@ -44,6 +50,9 @@ data/processed/*
 *.pdf
 *.png
 *.jpg
+*.tif
+*.xlsx
+*.docx
 
 # OS
 .DS_Store
