@@ -1,6 +1,20 @@
 # A Causal Inference-Guided Spatial Immune Framework Centered on C1Q in Non-Small Cell Lung Cancer
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Status](https://img.shields.io/badge/status-under_review-blue)](README.md)
+[![Model](https://img.shields.io/badge/final_model-XGBoost-2f7ed8)](README.md)
+
 This repository contains the curated analysis scripts, figure rebuild utilities, and reporting pipeline for our NSCLC study on C1Q-centered spatial immune organization.
+
+## Quick Links
+
+- Environment setup: [docs/environment_setup.md](docs/environment_setup.md)
+- Recommended run order: [docs/run_order.md](docs/run_order.md)
+- Repository layout: [docs/repository_layout.md](docs/repository_layout.md)
+- Data notes: [docs/data_notes.md](docs/data_notes.md)
+- Submission sync summary: [docs/latest_submission_sync.md](docs/latest_submission_sync.md)
+- Reproducibility checklist: [docs/reproducibility_checklist.md](docs/reproducibility_checklist.md)
+- Citation metadata: [`CITATION.cff`](CITATION.cff)
 
 The current repository state has been updated to match the latest submission-ready analysis package:
 
@@ -9,6 +23,23 @@ The current repository state has been updated to match the latest submission-rea
 - final prognostic model updated to `XGBoost`
 - final main and supplementary tables generated from a unified reporting script
 - figure wording and table labels synchronized with the latest manuscript language
+
+## At A Glance
+
+- Study focus: C1Q-centered spatial immune organization in NSCLC
+- Final selected model: `XGBoost`
+- Final robust features: `95`
+- MR-prioritized genes: `198`
+- Reporting path: unified table rebuild + final figure rebuild + manuscript formatting
+
+## Analysis Flow
+
+1. Feature discovery under nested cross-validation
+2. Gene prioritization via Mendelian randomization
+3. Spatial characterization using Visium and CosMx-compatible workflows
+4. Computational perturbation and mediation analysis
+5. Clinical and external validation
+6. Final reporting through synchronized figures, tables, and manuscript-facing exports
 
 ## Study Overview
 
@@ -85,7 +116,11 @@ remotes::install_github("MRCIEU/TwoSampleMR")
 install.packages(c("tidyverse", "data.table"))
 ```
 
+For a more practical setup guide, see [docs/environment_setup.md](docs/environment_setup.md).
+
 ## Reproducing Final Reporting Assets
+
+For the recommended execution order, see [docs/run_order.md](docs/run_order.md).
 
 ### Rebuild the unified tables
 
@@ -128,6 +163,7 @@ See [docs/data_notes.md](docs/data_notes.md) for expected local paths and tracki
 - Intermediate logs, large result files, manuscript binaries, and private/raw datasets are intentionally excluded.
 - Final table naming and wording now match the latest submission package, including the updated Table 3 title and Supplementary Table 10 column labels.
 - See [docs/latest_submission_sync.md](docs/latest_submission_sync.md) for a concise summary of the repository refresh.
+- The preferred entry path for new users is: environment setup -> run order -> reporting scripts.
 
 ## Repository Metadata
 
