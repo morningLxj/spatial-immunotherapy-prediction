@@ -47,6 +47,19 @@ Repository-facing documentation for readers and collaborators.
 
 Optional local output folder for regenerated figures, tables, and audit files. This directory is scaffolded for structure but generated outputs are not committed by default.
 
+## Public Release Alignment
+
+For manuscript-facing navigation, this repository is also exposed through six top-level public release entry files:
+
+- `01_data_accession_manifest.md`
+- `02_processing_and_qc.md`
+- `03_feature_selection_and_genetic_prioritization.md`
+- `04_spatial_and_consistency_analysis.md`
+- `05_reporting_assets.md`
+- `06_session_info.md`
+
+See [public_release_layout.md](public_release_layout.md) for the mapping.
+
 ## Local Workspace Mapping
 
 The repository was synchronized against a larger local workspace containing:

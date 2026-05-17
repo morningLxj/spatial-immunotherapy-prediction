@@ -4,11 +4,11 @@ This repository refresh aligns the public codebase with the latest submission-re
 
 ## Main Content Updates
 
-- README updated from the older "Spatial-Causal" framing to the current C1Q-centered, multi-layer framework language.
-- Final prognostic model description updated from earlier AdaBoost-centered wording to the current XGBoost-centered reporting.
+- README updated from older stronger framing to a manuscript-facing public release view aligned to the current PLOS ONE submission.
+- Model-related wording updated from earlier stronger prediction language to conservative transportability-oriented reporting.
 - Key counts updated to the latest values:
   - `95` robust features
-  - `198` MR-prioritized genes
+  - `198` genes carried forward through genetic prioritization
 - Final reporting language now reflects the current main-table and supplementary-table architecture.
 
 ## New Curated Additions
@@ -18,6 +18,7 @@ This repository refresh aligns the public codebase with the latest submission-re
 - unified table generator for main and supplementary tables
 - XGBoost repeated-CV AUC distribution updater
 - submission-style DOCX formatter
+- manuscript-facing public release navigation documents
 
 ## Reporting Alignment
 
@@ -26,6 +27,7 @@ The refreshed reporting code is synchronized with the latest local submission pa
 - Table 1 smoking explanation moved to table note logic
 - softened Table 3 title using "Genetic, Spatial, and Clinical" wording
 - journal-style Supplementary Table 10 column names
+- public release navigation aligned to the `01` through `06` manuscript-facing structure
 
 ## Repository Policy
 

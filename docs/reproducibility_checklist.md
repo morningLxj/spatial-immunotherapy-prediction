@@ -25,6 +25,12 @@ This checklist summarizes the minimum items needed to understand and rerun the p
 - repeated-CV XGBoost AUC distribution via `code/05_validation/append_xgboost_auc_distribution.py`
 - figure rebuild outputs for Figures 1-7 via `code/06_plotting/rebuild_figure*.py`
 
+## Public Release View
+
+- confirm the six public-release entry files are present
+- confirm README links route readers through the public navigation layer
+- confirm `docs/public_release_layout.md` maps the manuscript-facing sections to the physical repository tree
+
 ## Reporting Consistency Checks
 
 - Table 1 smoking explanation appears in the table note logic

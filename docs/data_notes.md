@@ -1,6 +1,6 @@
 # Data Notes
 
-This repository does not include raw patient-level datasets or large generated outputs.
+This public release is organized for reproducibility-oriented review and data-source tracing. It does not distribute raw patient-level datasets or large generated outputs.
 
 ## Not Tracked in Git
 
@@ -35,5 +35,5 @@ These assets should be stored outside the public repository or regenerated local
 ## Recommended Practice
 
 - Keep a private local workspace for large data and generated manuscript outputs.
-- Use this repository for reusable code, documentation, and lightweight configuration only.
+- Use this repository for reusable code, documentation, lightweight configuration, and manuscript-facing public navigation only.
 - If a collaborator needs to rerun the pipeline, provide a short environment guide plus a private data manifest rather than committing data snapshots into Git.
