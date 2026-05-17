@@ -4,6 +4,8 @@ This repository contains reproducibility materials for a retrospective public-da
 
 The C1Q-associated score is presented as a biological traceability measure. It is **not** presented as a clinically deployable prognostic model, a treatment-response biomarker, or mechanistic proof. Immunotherapy-associated datasets are used only as exploratory immune-context resources.
 
+Repository version: PLOS ONE public-data integration release, 2026-05-18.
+
 ## Repository contents
 
 ```text
