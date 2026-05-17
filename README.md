@@ -1,10 +1,30 @@
-# A Causal Inference-Guided Spatial Immune Framework Centered on C1Q in Non-Small Cell Lung Cancer
+# Public Reproducibility Release for a Spatial Immune Pattern Study in NSCLC
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Status](https://img.shields.io/badge/status-under_review-blue)](README.md)
-[![Model](https://img.shields.io/badge/final_model-XGBoost-2f7ed8)](README.md)
+[![Release](https://img.shields.io/badge/public_release-PLOS%20ONE%20aligned-4c956c)](README.md)
 
-This repository contains the curated analysis scripts, figure rebuild utilities, and reporting pipeline for our NSCLC study on C1Q-centered spatial immune organization.
+This repository is a curated public release aligned to the current PLOS ONE manuscript submission. It is intended to support transparency, data-source tracing, analytical navigation, and reproducibility-oriented review of the study workflow.
+
+The repository focuses on:
+
+- public data accession and processing notes
+- robust feature selection and genetic prioritization
+- spatial pattern analysis
+- computational consistency analysis
+- reporting assets and reproducibility support
+
+This repository should be read as a manuscript support package rather than a clinical deployment or mechanistic proof package.
+
+## Public Release Navigation
+
+- [01 Data Accession Manifest](01_data_accession_manifest.md)
+- [02 Processing and QC](02_processing_and_qc.md)
+- [03 Feature Selection and Genetic Prioritization](03_feature_selection_and_genetic_prioritization.md)
+- [04 Spatial and Consistency Analysis](04_spatial_and_consistency_analysis.md)
+- [05 Reporting Assets](05_reporting_assets.md)
+- [06 Session Info](06_session_info.md)
+- [Public Release Layout Mapping](docs/public_release_layout.md)
 
 ## Quick Links
 
@@ -16,53 +36,41 @@ This repository contains the curated analysis scripts, figure rebuild utilities,
 - Reproducibility checklist: [docs/reproducibility_checklist.md](docs/reproducibility_checklist.md)
 - Citation metadata: [`CITATION.cff`](CITATION.cff)
 
-The current repository state has been updated to match the latest submission-ready analysis package:
-
-- `95` robust features retained under nested cross-validation
-- `198` genes prioritized by Mendelian randomization
-- final prognostic model updated to `XGBoost`
-- final main and supplementary tables generated from a unified reporting script
-- figure wording and table labels synchronized with the latest manuscript language
-
-## At A Glance
-
-- Study focus: C1Q-centered spatial immune organization in NSCLC
-- Final selected model: `XGBoost`
-- Final robust features: `95`
-- MR-prioritized genes: `198`
-- Reporting path: unified table rebuild + final figure rebuild + manuscript formatting
-
-## Analysis Flow
-
-1. Feature discovery under nested cross-validation
-2. Gene prioritization via Mendelian randomization
-3. Spatial characterization using Visium and CosMx-compatible workflows
-4. Computational perturbation and mediation analysis
-5. Clinical and external validation
-6. Final reporting through synchronized figures, tables, and manuscript-facing exports
-
 ## Study Overview
 
-We developed a conservative multi-layer framework that integrates:
+This public release documents a multi-layer analysis workflow spanning data accession, feature selection, genetic prioritization, spatial pattern analysis, computational consistency analysis, and manuscript-facing reporting.
 
-- nested cross-validation and stability-driven feature discovery
-- Mendelian randomization for directionally informative genetic support
-- spatial transcriptomics from Visium and CosMx datasets
-- in silico perturbation and mediation analysis
-- prognostic and exploratory external validation
+The current public release highlights:
 
-Rather than relying on a single analysis layer, the project emphasizes convergence across genetic, spatial, and clinical evidence.
+- `95` robust features retained under nested cross-validation
+- `198` genes carried forward as Mendelian-randomization-based genetic prioritization results
+- spatial pattern analyses centered on C1Q-related and comparator myeloid signals
+- computational attenuation analyses used as internal consistency checks
+- synchronized figure and table generation for the current manuscript-facing package
 
-## Current Key Results
+Mendelian randomization is presented here as supportive genetic prioritization rather than definitive proof of biological causality. External validation results are presented as supportive transportability evidence rather than clinical deployment claims.
 
-- **Feature robustness**: `95` features were retained across nested resampling.
-- **Genetic prioritization**: `198` genes showed putative immune-related MR support.
-- **Spatial organization**: C1Q family genes form structured immune hotspots, while `SPP1` marks a distinct exclusion-associated niche.
-- **Perturbation consistency**: computational attenuation of the C1Q axis weakens hotspot organization in a graded manner.
-- **Clinical modeling**: `XGBoost` was selected as the final model based on the best cross-validated AUC in the TCGA training cohort.
-- **External validation**: the harmonized risk score remained prognostically relevant in `GSE31210`, with exploratory assessment in immunotherapy-related cohorts.
+## Public Release View
 
-## Repository Layout
+The repository exposes a manuscript-facing public navigation layer built around six sections:
+
+1. data accession manifest
+2. processing and QC
+3. feature selection and genetic prioritization
+4. spatial and consistency analysis
+5. reporting assets
+6. session info
+
+These sections are documented through the top-level entry files listed above, while the implementation-oriented repository tree remains unchanged.
+
+## Repository Notes
+
+- The physical repository structure remains organized as `code/`, `data/`, `docs/`, and `results/`.
+- The six public-release entry files provide the manuscript-facing navigation layer used for editorial and reviewer access.
+- Large source datasets, manuscript binaries, and private workspace outputs are intentionally excluded.
+- This repository is a curated code-and-documentation layer, not a mirror of the entire private analysis workspace.
+
+## Implementation-Oriented Structure
 
 ```text
 spatial-immunotherapy-prediction/
@@ -87,16 +95,16 @@ spatial-immunotherapy-prediction/
 `-- requirements.txt
 ```
 
-See [docs/repository_layout.md](docs/repository_layout.md) for the mapping between the repository and the latest manuscript-ready workspace assets.
+See [docs/public_release_layout.md](docs/public_release_layout.md) for the manuscript-facing mapping between this tree and the public release sections.
 
 ## Included Code Tracks
 
-- `code/02_feature_selection/`: robust feature selection and nested CV utilities
-- `code/03_mendelian_randomization/`: MR analysis scripts
-- `code/04_spatial_analysis/`: spatial preprocessing and Visium-related analysis
-- `code/05_validation/`: external validation and pan-cancer summary scripts
-- `code/06_plotting/`: final figure rebuild scripts used to align manuscript figures with the latest wording
-- `code/07_reporting/`: final table generation and manuscript formatting scripts
+- `code/02_feature_selection/`: nested cross-validation and feature-selection utilities
+- `code/03_mendelian_randomization/`: scripts supporting genetic prioritization analyses
+- `code/04_spatial_analysis/`: spatial preprocessing and analysis utilities
+- `code/05_validation/`: transportability-oriented validation and related summary scripts
+- `code/06_plotting/`: figure rebuild scripts aligned to the current manuscript wording
+- `code/07_reporting/`: main and supplementary table generation plus manuscript-facing formatting helpers
 
 ## Quick Start
 
@@ -108,7 +116,7 @@ pip install -r requirements.txt
 
 ### R
 
-The MR workflow depends on `TwoSampleMR` and common tidyverse tooling:
+The MR-related workflow depends on `TwoSampleMR` and common tidyverse tooling:
 
 ```r
 install.packages("remotes")
@@ -116,9 +124,9 @@ remotes::install_github("MRCIEU/TwoSampleMR")
 install.packages(c("tidyverse", "data.table"))
 ```
 
-For a more practical setup guide, see [docs/environment_setup.md](docs/environment_setup.md).
+For a practical setup guide, see [docs/environment_setup.md](docs/environment_setup.md).
 
-## Reproducing Final Reporting Assets
+## Reproducibility-Oriented Reporting
 
 For the recommended execution order, see [docs/run_order.md](docs/run_order.md).
 
@@ -128,13 +136,13 @@ For the recommended execution order, see [docs/run_order.md](docs/run_order.md).
 python code/07_reporting/rebuild_tables_and_docs.py --root <workspace_root> --out <output_dir>
 ```
 
-### Recompute the XGBoost repeated-CV AUC distribution
+### Recompute the repeated-CV XGBoost AUC distribution
 
 ```bash
 python code/05_validation/append_xgboost_auc_distribution.py --root <workspace_root> --out-dir <output_dir>
 ```
 
-### Rebuild manuscript figures
+### Rebuild manuscript-facing figures
 
 ```bash
 python code/06_plotting/rebuild_figure1.py
@@ -153,17 +161,15 @@ Large source datasets and manuscript output files are not tracked in this reposi
 - **TCGA NSCLC**: [NCI GDC Data Portal](https://portal.gdc.cancer.gov)
 - **GEO cohorts**: `GSE31210`, `GSE126044`, `GSE135222`, `GSE91061`
 - **eQTL resources**: [eQTL Catalogue](https://www.ebi.ac.uk/eqtl/)
-- **Spatial transcriptomics**: 10x Genomics Visium and CosMx-compatible resources used in the local analysis workspace
+- **Spatial transcriptomics**: public resources compatible with Visium and CosMx-style workflows used in the local analysis workspace
 
-See [docs/data_notes.md](docs/data_notes.md) for expected local paths and tracking policy.
+See [docs/data_notes.md](docs/data_notes.md) for expected local inputs and tracking policy.
 
 ## Status Notes
 
-- This repository is a curated code-and-documentation layer, not a mirror of the entire local workspace.
-- Intermediate logs, large result files, manuscript binaries, and private/raw datasets are intentionally excluded.
-- Final table naming and wording now match the latest submission package, including the updated Table 3 title and Supplementary Table 10 column labels.
-- See [docs/latest_submission_sync.md](docs/latest_submission_sync.md) for a concise summary of the repository refresh.
-- The preferred entry path for new users is: environment setup -> run order -> reporting scripts.
+- Final table naming and wording are synchronized with the current manuscript-facing submission package.
+- Public-facing repository text is being aligned to a conservative PLOS ONE submission framing.
+- The preferred entry path for editorial or reviewer browsing is: `README` -> `01` to `06` public entry files -> linked implementation paths.
 
 ## Repository Metadata
 
@@ -172,9 +178,7 @@ See [docs/data_notes.md](docs/data_notes.md) for expected local paths and tracki
 
 ## Citation
 
-If you use this repository, please cite the manuscript version associated with the latest submission package.
-
-> Li X, Zhang F, Zheng X, Xu X, Luo C. A Causal Inference-Guided Spatial Immune Framework Centered on C1Q in Non-Small Cell Lung Cancer. Under review.
+If you use this repository, please cite the manuscript version associated with the latest public release and submission package.
 
 ## License
 
