@@ -1,6 +1,6 @@
 cff-version: 1.2.0
-title: "A Causal Inference-Guided Spatial Immune Framework Centered on C1Q in Non-Small Cell Lung Cancer"
-message: "If you use this repository, please cite the associated manuscript and reference this codebase."
+title: "Public Reproducibility Release for a Spatial Immune Pattern Study in Non-Small Cell Lung Cancer"
+message: "If you use this repository, please cite the associated manuscript and reference this curated public release."
 type: software
 authors:
   - family-names: "Li"
@@ -17,7 +17,7 @@ repository-code: "https://github.com/morningLxj/spatial-immunotherapy-prediction
 license: "MIT"
 preferred-citation:
   type: article
-  title: "A Causal Inference-Guided Spatial Immune Framework Centered on C1Q in Non-Small Cell Lung Cancer"
+  title: "A spatial immune pattern study in non-small cell lung cancer"
   authors:
     - family-names: "Li"
       given-names: "X"
