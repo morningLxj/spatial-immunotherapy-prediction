@@ -1,0 +1,4 @@
+﻿Path,Direct association component,Indirect association component,Proportion-associated component
+C1Q -> CD8 -> Risk,0.541,-0.003,-0.607
+C1Q -> SPP1 -> Risk,0.559,-0.021,-3.925
+KCNAB2 -> CD8 -> Risk,-0.087,0.005,-5.481

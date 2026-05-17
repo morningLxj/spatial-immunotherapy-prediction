@@ -1,0 +1,10 @@
+Repository reproducibility information
+Generated for the conservative PLOS ONE public-data integration version.
+
+Required runtime for lightweight validation scripts:
+- Python 3.8 or later
+- pandas
+- openpyxl
+- numpy
+
+The repository includes processed source tables and does not require access to private or request-only datasets.

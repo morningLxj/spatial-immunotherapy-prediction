@@ -1,0 +1,2 @@
+analysis,score,cohorts,model,HR,CI_low,CI_high,I_squared_percent,interpretation
+Seven-GEO external survival traceability,Transparent C1Q-only score,7,Random-effects meta-analysis,1.06,0.95,1.18,55.9,Weak and heterogeneous survival traceability; not clinical validation

@@ -1,0 +1,17 @@
+﻿Symbol,Pathway,Category,Annotation
+C1QA,Complement,Immune,Complement_C1Q_A
+C1QB,Complement,Immune,Complement_C1Q_B
+C1QC,Complement,Immune,Complement_C1Q_C
+KCNAB2,Ion_Channel,Channel,Potassium_Voltage_Gated
+ACP5,Macrophage,Immune,Acid_Phosphatase
+BOK,Apoptosis,Apoptosis,BCL2_ovarian
+HIST1H4F,Histone,Histone,Histone_H4
+VAMP8,Vesicle,Vesicle,Vesicle_Associated
+FCER1A,Immune,Immune,FC_Epsilon_RI_Alpha
+MS4A4A,Immune,Immune,Membrane_Spanning
+CD14,Macrophage,Immune,Monocyte_Differentiation
+NLRP5,Inflammasome,Inflammasome,NLR_Family
+BIN1,Adapter,Adapter,BRCA1_Interacting
+LRRFIP1,Transcription,Not assessed,Not assessed
+HK3,Metabolism,Not assessed,Not assessed
+LTBP2,ECM,Not assessed,Not assessed

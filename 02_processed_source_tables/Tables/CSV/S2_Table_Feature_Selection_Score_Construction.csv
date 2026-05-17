@@ -1,0 +1,17 @@
+﻿Symbol,Biological category,Nested-CV selection frequency,Bootstrap selection frequency,LASSO coefficient,Mean importance,Role in score framework
+KCNAB2,Candidate model feature,1.000,0.990,-0.189,0.189,Full traceability framework
+C1QC,C1Q-axis gene,1.000,0.980,0.287,0.287,Transparent C1Q-only score and full traceability framework
+CD14,Myeloid or immune-context feature,1.000,0.940,Not available,0.089,Full traceability framework
+FCER1A,Myeloid or immune-context feature,1.000,0.840,Not available,0.108,Full traceability framework
+C1QB,C1Q-axis gene,1.000,0.720,0.298,0.298,Transparent C1Q-only score and full traceability framework
+HIST1H4F,Candidate model feature,1.000,0.690,0.128,0.128,Full traceability framework
+MS4A4A,Myeloid or immune-context feature,1.000,0.610,Not available,0.095,Full traceability framework
+BIN1,Candidate model feature,0.800,0.470,Not available,0.072,Full traceability framework
+BOK,Candidate model feature,1.000,0.440,-0.142,0.142,Full traceability framework
+VAMP8,Myeloid or immune-context feature,1.000,0.430,Not available,0.115,Full traceability framework
+NLRP5,Candidate model feature,0.800,0.420,Not available,0.078,Full traceability framework
+ACP5,Myeloid or immune-context feature,1.000,0.410,0.156,0.156,Full traceability framework
+C1QA,C1Q-axis gene,1.000,0.360,0.342,0.342,Transparent C1Q-only score and full traceability framework
+LRRFIP1,Candidate model feature,0.800,Not available,Not available,0.068,Full traceability framework
+HK3,Candidate model feature,0.800,Not available,Not available,0.065,Full traceability framework
+LTBP2,Candidate model feature,0.600,Not available,Not available,0.058,Full traceability framework

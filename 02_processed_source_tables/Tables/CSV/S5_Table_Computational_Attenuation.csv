@@ -1,0 +1,6 @@
+﻿Condition,Attenuation level,Moran's I,CD8 proximity median distance,Risk score,Risk score Q75,Delta Moran's I,Delta CD8 proximity,Delta Risk score,% change Moran's I,% change CD8 proximity,% change Risk score
+Baseline,0.000,0.542,366.000,0.000,0.246,0.000,0.000,0.000,0.000,0.000,Not estimated
+C1Q attenuation 20%,0.200,0.545,366.000,-0.035,0.198,0.003,0.000,-0.035,0.533,0.000,Not estimated
+C1Q attenuation 40%,0.400,0.545,366.000,-0.069,0.149,0.003,0.000,-0.069,0.578,0.000,Not estimated
+C1Q attenuation 60%,0.600,0.531,366.001,-0.104,0.104,-0.011,0.001,-0.104,-2.028,0.000,Not estimated
+C1Q attenuation 80%,0.800,0.441,366.399,-0.139,0.050,-0.101,0.399,-0.139,-18.642,0.109,Not estimated
