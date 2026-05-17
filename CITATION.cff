@@ -1,0 +1,32 @@
+cff-version: 1.2.0
+title: "Public Reproducibility Release for a Spatial Immune Pattern Study in Non-Small Cell Lung Cancer"
+message: "If you use this repository, please cite the associated manuscript and reference this curated public release."
+type: software
+authors:
+  - family-names: "Li"
+    given-names: "X"
+  - family-names: "Zhang"
+    given-names: "F"
+  - family-names: "Zheng"
+    given-names: "X"
+  - family-names: "Xu"
+    given-names: "X"
+  - family-names: "Luo"
+    given-names: "C"
+repository-code: "https://github.com/morningLxj/spatial-immunotherapy-prediction"
+license: "MIT"
+preferred-citation:
+  type: article
+  title: "A spatial immune pattern study in non-small cell lung cancer"
+  authors:
+    - family-names: "Li"
+      given-names: "X"
+    - family-names: "Zhang"
+      given-names: "F"
+    - family-names: "Zheng"
+      given-names: "X"
+    - family-names: "Xu"
+      given-names: "X"
+    - family-names: "Luo"
+      given-names: "C"
+  journal: "Under review"

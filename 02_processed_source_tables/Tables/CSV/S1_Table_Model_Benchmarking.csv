@@ -1,2 +1,0 @@
-﻿Model,Dataset,N,AUC,Accuracy,F1 score,C-index,"Hazard ratio (HR, 95% CI)",P-value,Selection criterion,"AUC (95% CI, n=100)"
-XGBoost,TCGA_Training,1008,0.781,0.725,0.715,0.591,1.56 (95% CI 1.33–1.84),<0.001,Highest cross-validated AUC,0.701 (0.592-0.811)

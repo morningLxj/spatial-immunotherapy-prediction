@@ -1,14 +1,59 @@
-# Local and generated files
+# Python
 __pycache__/
 *.py[cod]
-.ipynb_checkpoints/
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+
+# R
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+# VS Code
+.vscode/
+
+# Data (exclude large files)
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+results/figures/*
+results/tables/*
+results/audits/*
+!results/figures/.gitkeep
+!results/tables/.gitkeep
+!results/audits/.gitkeep
+*.h5ad
+*.csv
+*.gz
+*.zip
+*.pdf
+*.png
+*.jpg
+*.tif
+*.xlsx
+*.docx
+
+# OS
 .DS_Store
 Thumbs.db
-
-# Raw public data are not stored in this repository
-raw_data/
-data/raw/
-
-# Local editor files
-.vscode/
-.idea/

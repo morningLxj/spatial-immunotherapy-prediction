@@ -1,5 +1,0 @@
-﻿Cohort,N,Platform,AUC (1-year),AUC (3-year),AUC (5-year),C-index,"Hazard ratio (HR, 95% CI)",P-value,Validation status,Effect direction,Endpoint definition,Harmonized risk-oriented HR
-GSE31210,178,Microarray,0.596,0.600,0.692,0.629,2.23 (95% CI 1.09–4.56),0.024,Cross-cohort survival traceability,HR greater than 1,Overall survival (death event),2.230
-GSE126044,86,Microarray,0.813,0.813,0.813,0.721,0.28 (95% CI 0.09–0.87),0.018,Exploratory,Direction depends on endpoint definition,Immunotherapy cohort endpoint (cohort-specific coding),3.571
-GSE135222,124,RNA-seq,0.806,0.782,0.806,0.698,0.42 (95% CI 0.23–0.77),0.003,Exploratory,Direction depends on endpoint definition,Immunotherapy cohort endpoint (cohort-specific coding),2.381
-GSE91061,51,RNA-seq,0.758,0.758,0.758,0.689,0.35 (95% CI 0.15–0.82),0.012,Exploratory,Direction depends on endpoint definition,Immunotherapy cohort endpoint (cohort-specific coding),2.857
