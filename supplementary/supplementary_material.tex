@@ -22,7 +22,7 @@
 \geometry{left=2.5cm, right=2.5cm, top=2.500cm, bottom=2.5cm}
 
 \title{Supplementary Materials for:\\
-\textbf{C1Q/SPP1 Macrophage Spatial Context as a Reproducible Traceability Feature in Non-Small Cell Lung Cancer}}
+\textbf{C1Q/SPP1 Macrophage Spatial Context as a Cross-Dataset Traceability Feature in Non-Small Cell Lung Cancer}}
 \author{}
 \date{}
 
@@ -129,6 +129,21 @@
 
 \section{Supplementary Tables}
 
+\noindent\textbf{Supplementary table index.}
+Table S1, retrospective score behavior on training, internal cross-validation, test, and external sets;
+Table S2, stable features selected in 100\% of cross-validation folds;
+Table S3, eQTL-driven regulatory-network edge list;
+Table S4, stable features identified by nested cross-validation;
+Table S5, spatial autocorrelation and hotspot analysis;
+Table S6, hub-gene and immune-context correlations;
+Table S7, Mendelian-randomization analysis results;
+Table S8, TME-subtype differential-expression context;
+Table S9, external-cohort covariate summaries;
+Table S10, cell-type-specific eQTL analysis;
+Table S11, MR diagnostic parameters for prioritized genes;
+Table S12, spatial transcriptomics sample information; and
+Table S13, multivariable Cox regression analysis of the retrospective score.
+
 \clearpage
 
 \begin{landscape}
@@ -200,7 +215,7 @@
     \end{longtable}
 
     \vspace{1em}
-    \noindent\footnotesize\textbf{Note:} Summary of performance metrics for seven machine learning algorithms.
+    \noindent\footnotesize\textbf{Note:} Summary of retrospective score-behavior metrics for candidate machine-learning algorithms.
     \textbf{Abbreviations:} Acc, Accuracy; Prec, Precision; Rec, Recall; F1, F1-score; AUC, Area Under the Receiver Operating Characteristic Curve; CV, Cross-Validation.
     \textbf{Statistical Presentation:} Values in the \textit{Validation Set} column are expressed as mean $\pm$ standard deviation derived from 5-fold nested cross-validation, reflecting model stability.
     \textbf{Cohorts:} \textit{Training} and \textit{Test} sets are from the TCGA cohort (N=1,100); \textit{Ext.} denotes the independent external traceability cohort (GSE31210, N=178).
@@ -587,12 +602,12 @@
 {\small
   \setlength{\tabcolsep}{3pt}
   \begin{longtable}{lcccc}
-    \caption{\textbf{Colocalization Analysis Results (COLOC)}} \label{tab:Table_S8} \\
+    \caption{\textbf{TME-subtype differential-expression context}} \label{tab:Table_S8} \\
     \toprule
     TME Subtype & Gene Symbol & Avg. Log2 FC & P-value & Adj. P-value (FDR)         \\
     \midrule
     \endfirsthead
-    \caption[]{\textbf{Table S8 (Continued)}}                                       \\
+  \caption[]{\textbf{Table S8 (Continued)}}                                       \\
     \toprule
     TME Subtype & Gene Symbol & Avg. Log2 FC & P-value & Adj. P-value (FDR)         \\
     \midrule
@@ -628,12 +643,12 @@
 }
 
 \vspace{1em}
-\noindent\small \textbf{Note:} Differential expression analysis across tumor microenvironment (TME) subtypes. FC: Fold Change; FDR: False Discovery Rate. Only top significant genes per subtype are shown; complete results available in supplementary data files.
+\noindent\small \textbf{Note:} Differential expression analysis across tumor microenvironment (TME) subtypes. FC: Fold Change; FDR: False Discovery Rate. Only top genes per subtype are shown; complete results are available in supplementary data files. This table provides subtype context and is not a colocalization or causal analysis.
 
 % Table S9
 \newpage
 \begin{longtable}{lcccc}
-    \caption{\textbf{Model performance in external cohorts}} \label{tab:Table_S9} \\
+    \caption{\textbf{External-cohort covariate summaries}} \label{tab:Table_S9} \\
   \toprule
   Variable                & HR (OS) & 95\% CI (OS) & HR (RFS) & 95\% CI (RFS)              \\
   \midrule
@@ -655,7 +670,7 @@
 \end{longtable}
 
 \vspace{1em}
-\noindent\small \textbf{Note:} Multivariate Cox regression analysis in external cohorts. HR: Hazard Ratio; CI: Confidence Interval; OS: Overall Survival; RFS: Recurrence-Free Survival.
+\noindent\small \textbf{Note:} External-cohort covariate summaries for survival endpoints. HR: Hazard Ratio; CI: Confidence Interval; OS: Overall Survival; RFS: Recurrence-Free Survival. Main external traceability estimates are interpreted descriptively rather than as confirmatory validation.
 
 % Table S10
 \newpage
@@ -693,7 +708,7 @@
 {\tiny
   \setlength{\tabcolsep}{2pt}
   \begin{longtable}{lcccccccc}
-    \caption{\textbf{Pan-cancer prognostic analysis of MR-prioritized genes}} \label{tab:Table_S11}                                 \\
+    \caption{\textbf{MR diagnostic parameters for prioritized genes}} \label{tab:Table_S11}                                 \\
     \toprule
     Gene    & No. SNPs & F-statistics & MR-Egger P & MR-PRESSO P & Heterogeneity P & IVW $\beta$ & 95\% CI Lower & 95\% CI Upper \\
     \midrule
@@ -764,7 +779,7 @@
 % Table S13
 \newpage
 \begin{longtable}{lccccc}
-  \caption{\textbf{Multivariable Cox Regression Analysis of the Prognostic Signature}} \label{tab:Table_S13}                             \\
+  \caption{\textbf{Multivariable Cox regression analysis of the retrospective score}} \label{tab:Table_S13}                             \\
   \toprule
   \textbf{Variable}           & \textbf{HR} & \textbf{Lower 95\% CI} & \textbf{Upper 95\% CI} & \textbf{P-value} & \textbf{Significance} \\
   \midrule

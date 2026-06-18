@@ -36,19 +36,19 @@
 
 \begin{document}
 
-\title[C1Q/SPP1 Macrophage Spatial Context]{C1Q/SPP1 Macrophage Spatial Context as a Reproducible Traceability Feature in Non-Small Cell Lung Cancer: A Public Multi-Cohort Cancer-Informatics Evidence Synthesis}
+\title[C1Q/SPP1 Macrophage Spatial Context]{C1Q/SPP1 Macrophage Spatial Context as a Cross-Dataset Traceability Feature in Non-Small Cell Lung Cancer: A Public Multi-Cohort Cancer-Informatics Evidence Synthesis}
 
 \author*[1]{\fnm{Anonymous} \sur{Author}}
 
 \affil*[1]{\orgname{Anonymous Institution}, \orgaddress{\country{Anonymous}}}
 
-\abstract{\textbf{Objectives:} Public cancer-informatics resources provide an opportunity to test whether macrophage-associated complement programs are reproducible markers of non-small cell lung cancer (NSCLC) tumor-microenvironment context. However, retrospective multi-omics analyses are vulnerable to overinterpretation when prognostic, spatial, and immunotherapy-response signals are presented as clinical tools or mechanistic proof.
+\abstract{\textbf{Objectives:} Public cancer-informatics resources provide an opportunity to test whether macrophage-associated complement programs are traceable features of non-small cell lung cancer (NSCLC) tumor-microenvironment context. However, retrospective multi-omics analyses are vulnerable to overinterpretation when prognostic, spatial, and immunotherapy-response signals are presented as clinical tools or mechanistic proof.
 
-    \textbf{Methods:} We performed a conservative public-data evidence synthesis centered on the C1Q/SPP1 macrophage axis. Bulk transcriptomic and clinical data from TCGA NSCLC were used for discovery and model-behavior assessment after quality control. External prognostic traceability was evaluated in GSE31210 patients with complete follow-up, and small GEO immunotherapy datasets were analyzed separately as exploratory response-association cohorts. Spatial context was assessed using 10x Visium sections and Nanostring CosMx SMI data, with inference emphasized at the patient, section, or sample-contrast level rather than at the single-cell count level. Mendelian-randomization analyses were used for gene prioritization, not as definitive causal or therapeutic evidence.
+    \textbf{Methods:} We performed a conservative public-data evidence synthesis centered on the C1Q/SPP1 macrophage axis. Bulk transcriptomic and clinical data from TCGA NSCLC were used for discovery and score-behavior assessment after quality control. External prognostic traceability was evaluated in GSE31210 patients with complete follow-up. Two small NSCLC immune-checkpoint-blockade (ICB) cohorts and one melanoma exploratory ICB cohort were analyzed separately as response-association datasets. Spatial context was assessed using 10x Visium sections and Nanostring CosMx SMI data, with inference emphasized at the patient, section, or sample-contrast level rather than at the spot or single-cell count level. Mendelian-randomization analyses were used for gene prioritization, not as definitive causal or therapeutic evidence.
 
-    \textbf{Results:} Nested cross-validation identified a stable 95-feature set enriched for immune and macrophage-context signals. C1QA, C1QB, and C1QC showed reproducible spatial autocorrelation in available spatial datasets (Moran's I approximately 0.35--0.39), whereas SPP1 showed stronger spatial clustering (Moran's I = 0.712), consistent with a distinct macrophage-associated exclusion context. Retrospective model benchmarking showed statistically detectable but modest prognostic discrimination in TCGA and attenuated external performance in GSE31210; therefore, the model is reported as exploratory model behavior rather than as a validated clinical prediction tool. Small immunotherapy-treated cohorts showed directional response associations, but sample size and tumor-type heterogeneity preclude clinical claims.
+    \textbf{Results:} Nested cross-validation identified a stable 95-feature set enriched for immune and macrophage-context signals. C1QA, C1QB, and C1QC showed section-level spatial autocorrelation in patient-limited spatial datasets (Moran's I approximately 0.35--0.39), whereas SPP1 showed stronger spatial clustering (Moran's I = 0.712), consistent with a distinct macrophage-associated compartmentalized context. Retrospective model benchmarking showed statistically detectable but modest prognostic discrimination in TCGA and attenuated external performance in GSE31210; therefore, the model is reported as exploratory score behavior rather than as a clinical prediction tool. The ICB cohorts showed directional response associations, but sample size and tumor-type heterogeneity preclude clinical claims.
 
-    \textbf{Conclusions:} C1Q/SPP1 captures a reproducible macrophage-spatial context in public NSCLC resources and may serve as a traceability feature for immune-active versus immune-excluded tumor-microenvironment states. The findings are hypothesis-generating and require prospective, spatially resolved, and experimental validation before clinical implementation or therapeutic targeting can be considered.}
+    \textbf{Conclusions:} C1Q/SPP1 captures a cross-dataset macrophage-spatial context in public NSCLC resources and may serve as a traceability feature for immune-active versus macrophage-compartmentalized tumor-microenvironment states. The findings are hypothesis-generating and require prospective, spatially resolved, and experimental validation before clinical implementation or therapeutic targeting can be considered.}
 
 \keywords{Non-small cell lung cancer, Cancer informatics, C1Q, SPP1, macrophage context, spatial transcriptomics, reproducibility, traceability feature}
 
@@ -56,39 +56,56 @@
 
 \section{Introduction}\label{sec:intro}
 
-Non-small cell lung cancer (NSCLC) remains a major cause of cancer mortality, and immune checkpoint blockade has improved outcomes for a subset of patients \cite{sungGlobalCancerStatistics2021b, chenNonsmallcellLungCancers2014, reckPembrolizumabChemotherapyPDL1positive2016, herbstAtezolizumabFirstlineTreatment2020, gandhiPembrolizumabChemotherapyMetastatic2018}. However, PD-L1 expression, tumor mutational burden, and bulk immune-expression summaries do not fully capture the spatial and cellular organization of the tumor microenvironment (TME) \cite{marabelleAssociationTumourMutational2020, topalianMechanismdrivenBiomarkersGuide2016}. Spatial transcriptomics and single-cell technologies now make it possible to examine whether immune programs visible in bulk data also map to reproducible spatial contexts \cite{stahlVisualizationAnalysisGene2016, marxMethodYearSpatially2021, zilionisSinglecellTranscriptomicsHuman2019}.
+Non-small cell lung cancer (NSCLC) remains a major cause of cancer mortality, and immune checkpoint blockade has improved outcomes for a subset of patients \cite{sungGlobalCancerStatistics2021b, chenNonsmallcellLungCancers2014, reckPembrolizumabChemotherapyPDL1positive2016, herbstAtezolizumabFirstlineTreatment2020, gandhiPembrolizumabChemotherapyMetastatic2018}. However, PD-L1 expression, tumor mutational burden, and bulk immune-expression summaries do not fully capture the spatial and cellular organization of the tumor microenvironment (TME) \cite{marabelleAssociationTumourMutational2020, topalianMechanismdrivenBiomarkersGuide2016}. Spatial transcriptomics and single-cell technologies now make it possible to examine whether immune programs visible in bulk data also map to spatial contexts that can be traced across available datasets \cite{stahlVisualizationAnalysisGene2016, marxMethodYearSpatially2021, zilionisSinglecellTranscriptomicsHuman2019}.
 
-C1q, encoded by \textit{C1QA}, \textit{C1QB}, and \textit{C1QC}, is produced largely by macrophage and dendritic-cell lineages in the TME. Prior work suggests that complement-associated macrophage states may accompany either immune activation or tumor-promoting inflammation, depending on context. \textit{SPP1}-positive macrophage programs, by contrast, are often linked to stromal remodeling and immune exclusion. These observations motivate a narrower and more testable question: can the C1Q/SPP1 macrophage axis be traced reproducibly across public NSCLC transcriptomic, spatial, and clinical resources?
+C1q, encoded by \textit{C1QA}, \textit{C1QB}, and \textit{C1QC}, is produced largely by macrophage and dendritic-cell lineages in the TME. Prior work suggests that complement-associated macrophage states may accompany either immune activation or tumor-promoting inflammation, depending on context. \textit{SPP1}-positive macrophage programs, by contrast, are often linked to stromal remodeling and immune exclusion. These observations motivate a narrower and more testable question: can the C1Q/SPP1 macrophage axis be traced across public NSCLC transcriptomic, spatial, and clinical resources without overstating clinical or mechanistic certainty?
 
-The present study is intentionally framed as a public cancer-informatics evidence synthesis. We do not claim to establish a clinical diagnostic assay, a treatment-selection tool, or a definitive mechanism. Instead, we evaluate whether C1Q/SPP1 behaves as a reproducible traceability feature linking macrophage context, spatial organization, retrospective survival associations, and exploratory immunotherapy-response signals. This conservative framing separates data-supported observations from hypotheses that require prospective and experimental validation.
+The present study is intentionally framed as a public cancer-informatics evidence synthesis. We do not claim to establish a clinical diagnostic assay, a treatment-selection tool, or a definitive mechanism. Instead, we evaluate whether C1Q/SPP1 behaves as a traceability feature linking macrophage context, spatial organization, retrospective survival associations, and exploratory immunotherapy-response signals. This conservative framing separates data-supported observations from hypotheses that require prospective and experimental validation.
 
 \section{Methods}\label{sec:methods}
 
 \subsection{Study Design and Evidence Hierarchy}\label{subsec:study_design}
 
-This study used a staged, retrospective public-data design \cite{subramanianMultiomicsDataIntegration2020, chaudharyDeepLearningBased2018, sammutMultiomicMachineLearning2022}. The evidence hierarchy was defined before interpretation: (1) TCGA NSCLC was used for discovery and internal model-behavior assessment; (2) GEO cohorts were used for external prognostic traceability where complete follow-up was available; (3) Visium and CosMx SMI datasets were used to evaluate spatial context, with inference emphasized at the patient, section, or paired-contrast level; and (4) immunotherapy-treated cohorts were treated as exploratory response-association datasets because of small sample sizes and tumor-type heterogeneity (Figure \ref{fig:1}).
+This study used a staged, retrospective public-data design \cite{subramanianMultiomicsDataIntegration2020, chaudharyDeepLearningBased2018, sammutMultiomicMachineLearning2022}. The evidence hierarchy was defined before interpretation: (1) TCGA NSCLC was used for discovery and internal score-behavior assessment; (2) GEO cohorts were used for external prognostic traceability where complete follow-up was available; (3) Visium and CosMx SMI datasets were used to evaluate spatial context, with inference emphasized at the patient, section, or paired-contrast level; and (4) immunotherapy-treated cohorts were treated as exploratory response-association datasets because of small sample sizes and tumor-type heterogeneity (Figure \ref{fig:1}).
 
 \subsubsection{Data Acquisition and Quality Control}
 
 \textbf{Discovery Cohort (TCGA):} TCGA LUAD and LUSC transcriptomic and clinical data were retrieved from the NCI Genomic Data Commons \cite{hoadleyCelloforiginPatternsDominate2018a, thecancergenomeatlasresearchnetworkComprehensiveMolecularProfiling2014a}. A total of 1,100 TCGA NSCLC tumor samples were initially considered (595 LUAD and 505 LUSC). After quality control and availability filtering, 1,038 samples contributed to discovery analyses. Analyses requiring complete survival, stage, or model features used the corresponding complete-case subsets; denominators are reported with each analysis.
 
-\textbf{Spatial Transcriptomics Data:} For spatially resolved context analysis, we incorporated 10x Genomics Visium and Nanostring CosMx SMI datasets. Quality control, normalization, and platform-specific processing are described in the Supplementary Methods and source-data manifest.
+\textbf{Spatial Transcriptomics Data:} For spatially resolved context analysis, we incorporated 10x Genomics Visium and Nanostring CosMx SMI datasets. Quality control, normalization, and platform-specific processing are described in the Supplementary Methods and source-data manifest. Spatial inference was deliberately anchored to patient, section, or sample-contrast units; spots and cells were treated as measurement units within those samples rather than as independent biological replicates.
 \begin{itemize}
     \item \textbf{10x Visium:} Included 8 tissue sections from 1 patient (Supplementary Table S12), utilizing a 55 $\mu$m spot diameter for tissue-level spatial mapping.
     \item \textbf{CosMx SMI:} Encompassed 8 tissue sections from 5 NSCLC patients, containing approximately 800,000 profiled cells targeted with a 960-gene RNA panel. Cell counts were treated as descriptive observations; independent inference was anchored to samples, sections, and paired contrasts.
 \end{itemize}
 
-\textbf{External Cohorts:} Clinical and expression data were retrieved from GEO. GSE31210 contained 226 lung adenocarcinoma samples after exclusion of non-tumor controls and 178 patients with complete follow-up for survival analysis. GSE91061, GSE126044, and GSE135222 were used only for exploratory immunotherapy-response association; GSE91061 was interpreted as cross-tumor support because it is not an NSCLC-only cohort.
+\textbf{External Cohorts:} Clinical and expression data were retrieved from GEO. GSE31210 contained 226 lung adenocarcinoma samples after exclusion of non-tumor controls and 178 patients with complete follow-up for survival analysis. GSE126044 and GSE135222 were treated as small NSCLC ICB response-association cohorts, whereas GSE91061 was treated as a melanoma exploratory cohort only. These datasets were not pooled as confirmatory NSCLC immunotherapy validation.
 
 \subsection{C1Q/SPP1 Traceability Framework}\label{subsec:framework}
 
-We implemented a multi-stage traceability framework to evaluate whether C1Q/SPP1 macrophage context is reproducible across data layers:
+We implemented a multi-stage traceability framework to evaluate whether C1Q/SPP1 macrophage context is traceable across data layers:
 
-\textbf{Phase 1: MR-based gene prioritization:} Mendelian randomization (MR) was used to prioritize genes with genetically supported associations \cite{daveysmithMendelianRandomizationCan2003}, not to prove mechanism or treatment relevance. We used eQTL data from eQTLGen \cite{vosaLargescaleCisTranseQTL2021} and GTEx v8 with TwoSampleMR (v0.5.6), and inspected sensitivity diagnostics before assigning confidence.
+\textbf{Phase 1: MR-based gene prioritization:} Mendelian randomization (MR) was used to prioritize genes with expression-linked immune-context associations \cite{daveysmithMendelianRandomizationCan2003}, not to prove mechanism or treatment relevance. We used eQTL data from eQTLGen \cite{vosaLargescaleCisTranseQTL2021} and GTEx v8 with TwoSampleMR (v0.5.6), and inspected sensitivity diagnostics before assigning confidence.
 
-\textbf{Phase 2: Retrospective model-behavior assessment:} Machine-learning algorithms were benchmarked to assess whether the stable feature set carried survival-associated signal. The resulting models were not interpreted as clinical tools and no fixed clinical cutoff is proposed.
+\textbf{Phase 2: Retrospective score-behavior assessment:} Machine-learning algorithms were benchmarked to assess whether the stable feature set carried survival-associated signal. The resulting models were not interpreted as clinical tools and no fixed clinical cutoff is proposed.
 
 \textbf{Phase 3: Spatial context characterization:} A C1Q/SPP1-centered scoring approach was used to evaluate macrophage-associated spatial organization and CD8-marker context in Visium and CosMx data.
+
+\begin{table*}[htbp]
+    \caption{Claim-evidence-boundary framework used for interpretation}\label{tab:evidence_boundary}
+    \small
+    \begin{tabular*}{\textwidth}{@{\extracolsep\fill}p{0.18\textwidth}p{0.22\textwidth}p{0.24\textwidth}p{0.20\textwidth}}
+        \toprule
+        Claim domain & Evidence layer & Supported interpretation & Boundary \\
+        \midrule
+        C1Q/SPP1 macrophage context & TCGA/GEO transcriptomics, feature stability, immune-context correlations & The axis is traceable across public expression datasets as a macrophage-context feature & Not a diagnostic assay or tumor-specific marker \\
+        Spatial organization & Visium sections from one patient and CosMx sections from five NSCLC patients & C1Q and SPP1 show non-random spatial patterns in the available sections & Spots/cells are measurement units, not independent biological replicates; patient-level validation remains limited \\
+        MR-based prioritization & eQTL-based two-sample MR with sensitivity diagnostics & MR highlights candidates for follow-up under instrumental-variable assumptions & Not causal proof, target validation, or evidence of therapeutic actionability \\
+        Retrospective outcome score & TCGA internal assessment and GSE31210 traceability & The feature set carries modest outcome-linked signal and can be used descriptively & No locked clinical cutoff, no prospective validation, and no treatment-selection claim \\
+        ICB response association & Two small NSCLC ICB cohorts and one melanoma exploratory cohort & Directional response-associated separation is observed in small cohorts & Not NSCLC ICB validation and not evidence of superiority over PD-L1, TMB, or clinical baselines \\
+        \botrule
+    \end{tabular*}
+    \footnotetext{This table defines the interpretive boundaries used throughout the manuscript and the public evidence-chain map.}
+\end{table*}
 
 \subsection{Neighborhood Enrichment Analysis}\label{subsec:neighborhood}
 
@@ -106,7 +123,7 @@ All statistical analyses were performed using R and Python. Python-based data ma
 
 \subsection{Sample Size and Statistical Power}\label{subsec:power}
 
-The TCGA discovery cohort (N=1,038 after quality control) was adequate for exploratory feature discovery and internal model-behavior assessment. External cohorts were smaller and had lower event counts; therefore, external survival and immunotherapy-response results were interpreted as traceability or exploratory association rather than confirmatory validation. No prospective sample-size calculation was possible because the study used public retrospective data.
+The TCGA discovery cohort (N=1,038 after quality control) was adequate for exploratory feature discovery and internal score-behavior assessment. External cohorts were smaller and had lower event counts; therefore, external survival and immunotherapy-response results were interpreted as traceability or exploratory association rather than confirmatory validation. No prospective sample-size calculation was possible because the study used public retrospective data.
 
 \subsection{Nested Cross-Validation Framework}\label{sec:nested_cv}
 
@@ -131,7 +148,7 @@ This double-layer strategy separated feature selection from held-out fold assess
 
 \subsection{Mendelian Randomization for Gene Prioritization}
 
-We used two-sample Mendelian randomization \cite{hemaniMRbasePlatformSupports2018b} (MR), implemented in the \textit{TwoSampleMR} R package, as a gene-prioritization layer. MR estimates were interpreted as genetically supported associations under instrumental-variable assumptions, not as proof of spatial mechanism, therapeutic actionability, or clinical utility.
+We used two-sample Mendelian randomization \cite{hemaniMRbasePlatformSupports2018b} (MR), implemented in the \textit{TwoSampleMR} R package, as a gene-prioritization layer. MR estimates were interpreted as expression-linked associations under instrumental-variable assumptions, not as proof of spatial mechanism, therapeutic actionability, or clinical utility.
 
 \textbf{Instrumental Variable Selection}
 \begin{itemize}
@@ -156,13 +173,13 @@ We used two-sample Mendelian randomization \cite{hemaniMRbasePlatformSupports201
     \item \textbf{Leave-one-out analysis}: Iteratively excluded each SNP to assess single-variant influence.
 \end{enumerate}
 
-\textbf{Exposure and Outcome Definitions}: In all MR analyses, the exposure was defined as eQTL-mediated gene expression levels in immune-specific contexts, and the outcome was defined as the proportion of immune cell infiltration (e.g., CD8\textsuperscript{+} T-cell density) or specific immune phenotypes in lung cancer tissues.
+\textbf{Exposure and Outcome Definitions}: In all MR analyses, the exposure was defined as eQTL-mediated gene-expression proxies from available summary-statistic resources. Outcomes were immune-context phenotypes or immune-infiltration proxies derived from lung-cancer resources where available. These outcomes should not be interpreted as directly measured single-cell densities or spatial phenotypes.
 
-Detailed MR diagnostic parameters and leave-one-out sensitivity plots are provided in Supplementary Table S11 and Supplementary Figures S9--S10. Candidates with pleiotropy, heterogeneity, weak instruments, or bidirectional signals were interpreted cautiously.
+Detailed MR diagnostic parameters and leave-one-out sensitivity plots are provided in Supplementary Table S11 and Supplementary Figures S9--S10. Very small MR P-values were interpreted as ranking evidence within the analytic pipeline rather than as proportional evidence of effect certainty. Candidates with pleiotropy, heterogeneity, weak instruments, limited colocalization support, or bidirectional signals were interpreted cautiously.
 
 \subsection{Spatial Transcriptomics Analysis}\label{subsec:spatial_methods}
 
-Recent studies have demonstrated the utility of deep learning in spatial transcriptomics \cite{panDeepLearningFramework2025, xuSPACELDeepLearningbased2023}.
+Spatial analyses were designed to test whether C1Q/SPP1-associated expression showed non-random local structure in the available tissue sections. Because the spatial datasets contained few independent patients, all spatial statistics were interpreted as descriptive spatial-context summaries.
 
 \subsubsection{Spatial Autocorrelation Analysis}
 We quantified spatial clustering of gene expression using Moran's I statistic implemented in the 'spdep' R package, a measure of spatial autocorrelation ranging from -1 (dispersion) to +1 (clustering). We calculated Moran's I values for candidate genes across spatial locations using a queen contiguity matrix with 10,000 permutations. Genes with Moran's I $>$ 0.35 and corrected $P < 0.001$ were described as spatially clustered. The term ``hotspot'' is used descriptively and does not imply causal organization.
@@ -176,9 +193,9 @@ To assess spatial context among C1Q, SPP1, and immune-marker programs, we calcul
 \subsection{Counterfactual Scoring and Sensitivity Analysis}\label{subsec:virtual_ko}
 We performed a counterfactual scoring analysis centered on \textit{C1QA}. \textit{C1QA} abundance was reduced computationally and the C1Q composite score, CD8 proxy, Moran's I, network summaries, and risk-score outputs were recomputed. This procedure tests score dependency and internal coherence of the C1Q module; it is not an experimental perturbation and is not interpreted as intervention-like evidence. Dose-response, mediation-style decomposition, bidirectional MR, Steiger directionality comparison, spatial scale-dependency, and specificity analyses were used as sensitivity analyses to assess whether the C1Q/SPP1 signal was internally consistent across analytic views.
 
-\subsection{Machine Learning Model Development and Evaluation}\label{subsec:ml_methods}
+\subsection{Retrospective Score Construction and Evaluation}\label{subsec:ml_methods}
 
-We systematically evaluated seven machine learning algorithms for retrospective survival modeling: AdaBoost, Random Forest, XGBoost, Logistic Regression, Support Vector Machine (SVM), Soft Voting ensemble, and LASSO Cox Regression. All models were trained on the TCGA cohort using the 95 core features identified through nested CV.
+We benchmarked eleven candidate supervised algorithms or model families for retrospective survival-associated score behavior: AdaBoost, Random Forest, XGBoost, Logistic Regression, Support Vector Machine (SVM), Soft Voting ensemble, LASSO Cox Regression, Gradient Boosting, Naive Bayes, K-Nearest Neighbors, and Decision Tree. All models were trained on the TCGA cohort using the 95 core features identified through nested CV. The purpose was to assess whether the feature set carried outcome-linked signal, not to establish a deployable prediction model.
 
 \subsubsection{Model Training and Hyperparameter Optimization}
 Each algorithm underwent hyperparameter optimization using Bayesian optimization with 5-fold stratified cross-validation, implemented in the Optuna framework (version 3.1.0). The optimization objective was to improve balanced accuracy while controlling model complexity. We employed a Tree-structured Parzen Estimator (TPE) sampler for search-space exploration.
@@ -212,8 +229,8 @@ Raw data from different platforms underwent harmonization using the following st
 Model behavior was evaluated using the same retrospective metrics as the training cohort where endpoint availability allowed:
 \begin{itemize}
     \item Discrimination: Time-dependent AUC at 1, 3, and 5 years
-    \item Calibration: Calibration plots with Hosmer-Lemeshow test
-    \item Risk stratification: Hazard ratios and Kaplan-Meier survival curves
+    \item Score calibration: Exploratory calibration summaries where endpoint format allowed
+    \item Score-group separation: Hazard ratios and Kaplan-Meier survival curves using descriptive median splits
     \item Cross-cohort consistency: direction and approximate magnitude of the risk-score association
     \item Heterogeneity checks: interaction terms between cohort and risk score in combined Cox models where harmonized covariates were available
 \end{itemize}
@@ -221,7 +238,7 @@ Model behavior was evaluated using the same retrospective metrics as the trainin
 Transferability was judged descriptively from discrimination, survival separation, and directionally compatible hazard ratios. These criteria were pragmatic and exploratory, not pre-registered clinical benchmarks.
 
 \subsubsection{Performance Evaluation}
-Model performance was assessed using multiple retrospective metrics:
+Score behavior was assessed using multiple retrospective metrics:
 \begin{itemize}
     \item \textbf{Discrimination}: Area Under the ROC Curve (AUC), Accuracy, Precision, Recall, F1-score
     \item \textbf{Ranking}: Concordance index (C-index)
@@ -229,7 +246,7 @@ Model performance was assessed using multiple retrospective metrics:
     \item \textbf{Survival analysis}: Hazard ratios (HR) with 95\% confidence intervals, log-rank test P-values
 \end{itemize}
 
-Time-dependent ROC curves were generated for 1-year, 3-year, and 5-year survival predictions. Risk scores were calculated for each patient, and the cohort was stratified into high-risk and low-risk groups using the median risk score as a descriptive cutoff.
+Time-dependent ROC curves were generated for 1-year, 3-year, and 5-year survival endpoints. Risk scores were calculated for each patient, and the cohort was grouped into high-score and low-score groups using the median risk score as a descriptive cutoff. This cutoff was not proposed for clinical use.
 
 \subsubsection{Model Selection Rationale}
 While XGBoost achieved the highest AUC (0.781) in internal evaluation, we retained AdaBoost as the reference model for downstream description because it produced stable survival separation and a compact risk formulation. This is a pragmatic modeling choice, not evidence that AdaBoost is uniformly superior across all metrics. The ensemble nature of AdaBoost can be helpful for high-dimensional data, but no clinical superiority is claimed.
@@ -264,11 +281,11 @@ We initially considered 1,100 TCGA NSCLC tumor samples (595 LUAD, 505 LUSC). Aft
     \item \textbf{Gender disparity}: LUSC had higher male representation (74.1\% vs.\ 41.3\% in LUAD)
     \item \textbf{Survival outcomes}: LUSC patients showed higher mortality (43.6\% vs.\ 32.1\% in LUAD)
 \end{itemize}
-Detailed characteristics are provided in Table~\ref{tab:baseline} and Supplementary Table S8.
+Detailed characteristics are provided in Table~\ref{tab:baseline}; cohort accounting and source-data traceability are documented in the public source-data manifest.
 
-\begin{table*}[htbp]
-    \begin{minipage}{\textwidth}
-        \caption{Baseline characteristics of study population (TCGA NSCLC cohort and GSE31210 traceability cohort)}\label{tab:baseline}
+\begin{sidewaystable}[htbp]
+    \scriptsize
+    \caption{Baseline characteristics of study population (TCGA NSCLC cohort and GSE31210 traceability cohort)}\label{tab:baseline}
         \begin{tabular*}{\textwidth}{@{\extracolsep\fill}lccccc}
             \toprule
             Characteristic & Total (N=1100) & LUAD (N=595) & LUSC (N=505) & GSE31210 (N=226\textsuperscript{b}) & $P$-value\textsuperscript{a} \\
@@ -299,12 +316,11 @@ Detailed characteristics are provided in Table~\ref{tab:baseline} and Supplement
             \quad Unknown & 63 (5.7\%) & 63 (10.6\%) & 0 (0.0\%) & 0 (0.0\%) & \\
             \botrule
         \end{tabular*}
-        \footnotetext{Note: \textsuperscript{b}The GSE31210 cohort includes 226 primary lung adenocarcinoma samples after excluding normal tissue controls; survival analyses used 178 patients with complete follow-up data. N.A. = Not Available. \textsuperscript{a}$P$-values compare TCGA (Total) vs.\ GSE31210 using Mann-Whitney U test for continuous variables and Chi-square test for categorical variables. The discovery cohort for feature screening consisted of 1,038 patients after QC.}
-    \end{minipage}
-\end{table*}
+    \footnotetext{Note: \textsuperscript{b}The GSE31210 cohort includes 226 primary lung adenocarcinoma samples after excluding normal tissue controls; survival analyses used 178 patients with complete follow-up data. N.A. = Not Available. \textsuperscript{a}$P$-values compare TCGA (Total) vs.\ GSE31210 using Mann-Whitney U test for continuous variables and Chi-square test for categorical variables. The discovery cohort for feature screening consisted of 1,038 patients after QC.}
+\end{sidewaystable}
 
 \begin{sidewaystable}[htbp]
-    \caption{Performance comparison of machine learning algorithms for prognostic model construction}\label{tab:model_performance}
+    \caption{Retrospective score-behavior comparison across candidate algorithms}\label{tab:model_performance}
     \begin{tabular*}{\textwidth}{@{\extracolsep\fill}lcccccc}
         \toprule
         \textbf{Model} & \textbf{Test AUC} & \textbf{Test Accuracy} & \textbf{Test F1-score} & \textbf{C-index} & \textbf{HR (95\% CI)} & \textbf{P-value} \\
@@ -322,12 +338,12 @@ Detailed characteristics are provided in Table~\ref{tab:baseline} and Supplement
         LASSO Cox & 0.725 & 0.686 & 0.629 & 0.558 & 1.52 (1.39--1.66) & $<$0.001 \\
         \botrule
     \end{tabular*}
-    \footnotetext{Note: Models were evaluated using 5-fold nested cross-validation. Test AUC represents area under the ROC curve on the held-out fold. C-index measures risk ranking. HR and 95\% CI were calculated using continuous Cox regression with standardized risk scores. Bold values identify the reference AdaBoost model used for downstream descriptive analyses; they do not indicate uniform superiority across all metrics.}
+    \footnotetext{Note: Models were evaluated using 5-fold nested cross-validation. Test AUC represents area under the ROC curve on the held-out fold. C-index measures risk ranking. HR and 95\% CI were calculated using continuous Cox regression with standardized risk scores. Bold values identify the reference AdaBoost score used for downstream descriptive analyses; they do not indicate uniform superiority across all metrics or clinical readiness.}
 \end{sidewaystable}
 
 \subsection{Robust Feature Selection via Nested Cross-Validation}\label{subsec:res_nested_cv}
 
-Nested cross-validation identified 95 stable features selected in 100\% of outer folds, with 212 features showing $>$60\% selection frequency (Figure 2C, Figure S2, Supplementary Table S4). These features were used as a stability-prioritized set for downstream exploratory modeling.
+Nested cross-validation identified 95 stable features selected in 100\% of outer folds, with 212 features showing $>$60\% selection frequency (Supplementary Figure S2, Supplementary Table S4). These features were used as a stability-prioritized set for downstream exploratory score construction.
 
 Key stable features comprised:
 \begin{itemize}
@@ -336,23 +352,23 @@ Key stable features comprised:
     \item \textbf{\textit{BOK}} (pro-apoptotic pathway).
 \end{itemize}
 
-Feature selection stability analysis confirmed clear separation between highly stable (frequency = 5/5) and less consistent features (Figure S2A).
+Feature selection stability analysis confirmed clear separation between highly stable (frequency = 5/5) and less consistent features (Supplementary Figure S2A).
 
-\subsection{Mendelian Randomization Prioritizes a Reproducible Gene Set in NSCLC}\label{subsec:res_mr}
+\subsection{Mendelian Randomization Prioritizes a Candidate Gene Set in NSCLC}\label{subsec:res_mr}
 
-Mendelian randomization prioritized \textbf{198 genes as genetically supported candidates} associated with lung cancer immune characteristics (Figure \ref{fig:3}, Figure S3, Figure S9, Supplementary Tables S7 and S11). The diagnostics suggested that some candidates had usable instruments, while others should be treated cautiously because of heterogeneity, pleiotropy, or bidirectional signals. These results are better viewed as a prioritization layer than as definitive causal proof.
+Mendelian randomization prioritized \textbf{198 genes as expression-linked candidates} associated with lung-cancer immune-context phenotypes (Figure~\ref{fig:2}, Supplementary Figures S9--S10, Supplementary Tables S7 and S11). The diagnostics suggested that some candidates had usable instruments, while others should be treated cautiously because of heterogeneity, pleiotropy, limited colocalization support, or bidirectional signals. These results are better viewed as a prioritization layer than as definitive causal proof.
 
 \textbf{Key Findings}
 \begin{itemize}
     \item \textbf{Hub Genes}: \textit{KCNAB2} and \textit{C1QA} emerged as central network-linked candidates in the MR-filtered set
-    \item \textbf{Genetic Associations}: \textit{HIST1H4F} (IVW $\beta =$ 0.251, $P < 1 \times 10^{-200}$), \textit{BOK} (IVW $\beta =$ -0.119, $P = 5.580 \times 10^{-9}$), \textit{KCNAB2} (IVW $\beta =$ -0.078, $P = 1.070 \times 10^{-13}$), and \textit{ACP5} (IVW $\beta =$ 0.234, $P = 4.760 \times 10^{-9}$) were among the better-supported associations
+    \item \textbf{Expression-linked associations}: \textit{HIST1H4F} (IVW $\beta =$ 0.251, $P < 1 \times 10^{-200}$), \textit{BOK} (IVW $\beta =$ -0.119, $P = 5.580 \times 10^{-9}$), \textit{KCNAB2} (IVW $\beta =$ -0.078, $P = 1.070 \times 10^{-13}$), and \textit{ACP5} (IVW $\beta =$ 0.234, $P = 4.760 \times 10^{-9}$) were among the better-ranked associations; the extreme P-values were used for prioritization and not interpreted as effect certainty
     \item \textbf{Robustness}: Leave-one-out analysis suggested that no single SNP dominated the top signals
     \item \textbf{Functional Enrichment}: Significant enrichment in immune response pathways (GO:0006955), T cell receptor signaling (hsa04660), and cytokine-cytokine receptor interaction (hsa04060)
 \end{itemize}
 
-\subsection{Identification of Spatial C1Q Immune Hotspots}\label{subsec:res_spatial}
+\subsection{Patient-Limited Spatial Mapping of C1Q/SPP1 Context}\label{subsec:res_spatial}
 
-\textbf{High-resolution spatial mapping reveals reproducible C1Q clustering.} Utilizing both 10x Visium and CosMx SMI platforms, we observed that C1Q expression was spatially clustered rather than uniformly distributed within the available TME sections (Figures 4--5, Supplementary Figure S5, Table 3, Supplementary Table S5). C1Q family members exhibited moderate spatial autocorrelation among immune genes:
+\textbf{Spatial mapping supports non-random C1Q clustering in the available sections.} Utilizing both 10x Visium and CosMx SMI platforms, we observed that C1Q expression was spatially clustered rather than uniformly distributed within the available TME sections (Figures~\ref{fig:3}--\ref{fig:4}, Table~\ref{tab:spatial_genes}, Supplementary Table S5). C1Q family members exhibited moderate spatial autocorrelation among immune genes:
 \begin{itemize}
     \item \textbf{C1QA}: Moran's I = 0.386 ($P < 0.001$)
     \item \textbf{C1QC}: Moran's I = 0.377 ($P < 0.001$)
@@ -361,48 +377,48 @@ Mendelian randomization prioritized \textbf{198 genes as genetically supported c
 
 Global analysis of 100 immune-related genes placed C1Q family members among the more spatially clustered immune genes, alongside UBXN10 (Moran's I = 0.416). SPP1 showed stronger spatial autocorrelation (Moran's I = 0.712, $P < 0.001$), consistent with a more spatially compartmentalized macrophage context.
 
-\textbf{Neighborhood enrichment analysis} suggested that C1Q-associated macrophage contexts were often near CD8-marker-positive contexts. GigaTIME deconvolution linked C1Q regions to myeloid and T-cell marker enrichment, including CD14, CD163, CD68, and CD8-marker proxies ($P < 1 \times 10^{-6}$; Supplementary Table S6, Figure S6). CD138-positive plasma-cell context was analyzed separately and is not treated as a macrophage marker. These results support a spatial association, but not direct cell-cell signaling.
+\textbf{Neighborhood enrichment analysis} suggested that C1Q-associated macrophage contexts were often near CD8-marker-positive contexts. GigaTIME deconvolution linked C1Q regions to myeloid and T-cell marker enrichment, including CD14, CD163, CD68, and CD8-marker proxies ($P < 1 \times 10^{-6}$; Figure~\ref{fig:4}, Supplementary Figure S6, Supplementary Table S6). CD138-positive plasma-cell context was analyzed separately and is not treated as a macrophage marker. These results support a spatial association, but not direct cell-cell signaling.
 
 CosMx SMI context analysis across 8 sections from 5 patients showed broadly similar spatial patterns, although the cross-platform statistic was small in magnitude (bivariate Moran's I = 0.009). This supports limited reproducibility of the pattern rather than strong effect size.
 
 \subsection{Counterfactual Scoring Shows Dependency of the C1Q Module}\label{subsec:res_virtual_ko}
-To test whether the C1Q score was internally dependent on \textit{C1QA}, we performed a counterfactual scoring analysis and re-estimated spatial and clinical metrics (Supplementary Figures S11--S12). The computational attenuation reduced the C1Q program score (mean C1Q score: 5.179 $\rightarrow$ 2.628) and decreased Moran's I (0.660 $\rightarrow$ 0.401; $\Delta$ = -0.259). This indicates score dependency and module sensitivity, not experimental proof of hotspot collapse.
+To test whether the C1Q score was internally dependent on \textit{C1QA}, we performed a counterfactual scoring analysis and re-estimated spatial and clinical metrics (Supplementary Figures S11--S12). The computational attenuation reduced the C1Q program score (mean C1Q score: 5.179 $\rightarrow$ 2.628) and decreased Moran's I (0.660 $\rightarrow$ 0.401; $\Delta$ = -0.259). This indicates score dependency and module sensitivity, not experimental proof of biological perturbation.
 
 Additional sensitivity analyses showed a coherent pattern across several views. Dose-response modeling demonstrated monotonic trends across C1Q quartiles, with increasing CD8 proxy signal (trend slope = 0.478, $P = 6.27 \times 10^{-30}$) and coordinated risk-score shift (trend slope = 0.586, $P = 4.35 \times 10^{-110}$). Bidirectional MR identified forward and reverse signals for some candidates, which argues for caution rather than overclaiming. Spatial scale analysis indicated the strongest local association at the shortest tested radius. Mediation-style decomposition suggested a possible indirect component through the CD8 proxy, while specificity testing ranked the C1Q axis among the better-supported immune modules relative to non-C1Q controls (Supplementary Figure S12).
 
 The associated visualization and network-summary sensitivity outputs are provided in Supplementary Figures S11--S12 rather than treated as additional main-result figures, because these analyses are sensitivity checks rather than experimental perturbations.
 
-\subsection{Machine Learning Model Performance and Risk Stratification}\label{subsec:res_ml}
+\subsection{Retrospective Score Behavior and Outcome Traceability}\label{subsec:res_ml}
 
-\textbf{The C1Q/SPP1 feature set showed retrospective survival-associated model behavior.} Evaluation of seven machine learning algorithms showed that different algorithms optimized different metrics (Table~\ref{tab:model_performance}, Figure 2A--B, Supplementary Table S1). AdaBoost was retained as the reference model for downstream description, but it was not uniformly superior across all metrics.
+\textbf{The C1Q/SPP1 feature set showed retrospective survival-associated score behavior.} Evaluation across candidate algorithms showed that different methods optimized different metrics (Table~\ref{tab:model_performance}, Figure~\ref{fig:6}A--C, Supplementary Figures S2 and S8, Supplementary Table S1). AdaBoost was retained as the reference score for downstream description, but it was not uniformly superior across all metrics.
 
-\textbf{Key Performance Metrics}
+\textbf{Key Retrospective Metrics}
 \begin{itemize}
     \item \textbf{AdaBoost} showed moderate ranking performance (C-index = 0.607) and a significant association between standardized risk score and survival (HR = 1.430, 95\% CI: 1.21--1.70, $P < 0.001$).
     \item \textbf{XGBoost} achieved the highest AUC (0.781), whereas other algorithms showed higher C-index values. This metric discordance argues against presenting any single model as clinically superior.
 \end{itemize}
 
-\textbf{Risk Stratification}:
-AdaBoost stratified a TCGA complete-case subset into high-score and low-score groups with different survival outcomes (log-rank $P = 0.005$, HR = 1.620, 95\% CI: 1.15--2.27). To avoid ambiguity, higher model risk score denotes the adverse-risk direction; C1Q-enriched immune-active context is interpreted separately from the aggregate risk-score direction. Time-dependent ROC showed modest discrimination: 1-year AUC of 0.609, 3-year AUC of 0.611, and 5-year AUC of 0.590 (Figure 6A--B).
+\textbf{Score-Group Separation}:
+AdaBoost separated a TCGA complete-case subset into high-score and low-score groups with different survival outcomes (log-rank $P = 0.005$, HR = 1.620, 95\% CI: 1.15--2.27). To avoid ambiguity, higher model risk score denotes the adverse-risk direction; C1Q-enriched immune-active context is interpreted separately from the aggregate risk-score direction. Time-dependent ROC showed modest discrimination: 1-year AUC of 0.609, 3-year AUC of 0.611, and 5-year AUC of 0.590 (Figure~\ref{fig:6}A--B).
 
 \textbf{External Traceability}:
-In GSE31210, the feature set showed attenuated but directionally compatible performance (AUC = 0.650, C-index = 0.629; Figure \ref{fig:7}, Supplementary Figure S7). Survival separation was sensitive to analysis specification, with source tables reporting both significant and borderline estimates depending on completeness and covariate handling. Therefore, GSE31210 is treated as external traceability rather than definitive validation. Decision curve analysis is reported only as exploratory net-benefit visualization.
+In GSE31210, the feature set showed attenuated but directionally compatible score behavior (AUC = 0.650, C-index = 0.629; Figure~\ref{fig:7}, Supplementary Figure S7, Supplementary Table S13). Survival separation was sensitive to analysis specification, with source tables reporting both significant and borderline estimates depending on completeness and covariate handling. Therefore, GSE31210 is treated as external traceability rather than definitive validation. Decision curve analysis is reported only as exploratory net-benefit visualization.
 
 \subsection{Exploratory Immunotherapy-Response Association}\label{subsec:res_immuno}
 
 We next examined whether the C1Q/SPP1-associated score tracked response in small immunotherapy-treated datasets. These analyses are exploratory because cohort sizes were limited and GSE91061 is not NSCLC-specific. We therefore report directional associations without claiming clinical response prediction or superiority over PD-L1/TMB.
 
-\textbf{GSE91061 (melanoma-dominant exploratory cohort)}: Low-risk patients showed higher objective response rates (42.3\% vs.\ 15.8\%, $P = 0.018$) with AUC = 0.758. Responders exhibited decreasing risk scores during therapy (mean change: $-0.210 \pm 0.150$, $P = 0.006$). Because this cohort is not NSCLC-specific, it is treated as cross-tumor exploratory support.
+\textbf{GSE91061 (melanoma exploratory cohort)}: Low-score patients showed higher objective response rates (42.3\% vs.\ 15.8\%, $P = 0.018$) with AUC = 0.758. Responders exhibited decreasing risk scores during therapy (mean change: $-0.210 \pm 0.150$, $P = 0.006$). Because this cohort is not NSCLC-specific, it is treated as cross-tumor exploratory support only.
 
-\textbf{GSE126044 (NSCLC)}: The risk score discriminated responders with AUC = 0.813 and was associated with longer PFS in low-risk patients (median 12.4 vs.\ 3.2 months, HR = 0.280, $P = 0.018$), but the cohort size was small (N=16).
+\textbf{GSE126044 (NSCLC)}: The score showed response-associated separation with AUC = 0.813 and was associated with longer PFS in low-score patients (median 12.4 vs.\ 3.2 months, HR = 0.280, $P = 0.018$), but the cohort size was small (N=16).
 
 \textbf{GSE135222 (NSCLC)}: A directional response association was observed with AUC = 0.806 ($P = 0.003$), again limited by small sample size (N=27).
 
-Subtype summaries suggested that lower-risk or C1Q-enriched contexts were more often aligned with inflamed immune programs, whereas higher-risk contexts were more often aligned with excluded or desert-like features, including SPP1-associated macrophage programs. These subtype assignments are descriptive and require independent validation.
+Subtype summaries suggested that lower-score or C1Q-enriched contexts were more often aligned with inflamed immune programs, whereas higher-score contexts were more often aligned with excluded or desert-like features, including SPP1-associated macrophage programs. These subtype assignments are descriptive and require independent validation.
 
 \subsection{Multivariable Survival Association}\label{subsec:res_multi}
 
-To assess whether the score retained survival association after adjustment for available clinical variables, we performed Cox regression analyses (Table~\ref{tab:cox_regression}, Supplementary Table S9).
+To assess whether the score retained survival association after adjustment for available clinical variables, we performed Cox regression analyses (Table~\ref{tab:cox_regression}, Supplementary Table S13).
 
 \textbf{Univariate Analysis}
 \begin{itemize}
@@ -420,7 +436,7 @@ To assess whether the score retained survival association after adjustment for a
     \item \textbf{Stage} (Stage IV vs.\ Stage I): HR = 1.350 (95\% CI: 1.11--1.65), $P = 0.003$ (significant)
 \end{itemize}
 
-\textbf{Multivariate Analysis} (Supplementary Table S9):
+\textbf{Multivariate Analysis} (Supplementary Table S13):
 After adjusting for age, gender, and stage, the risk score retained association with survival endpoints in the available complete-case models:
 \begin{itemize}
     \item \textbf{Overall Survival}: Age HR = 1.020 (95\% CI: 0.98--1.06), Gender HR = 1.150 (95\% CI: 0.72--1.84), Stage II vs.\ Stage I HR = 2.340 (95\% CI: 1.45--3.78)
@@ -429,7 +445,7 @@ After adjusting for age, gender, and stage, the risk score retained association 
 
 \subsection{Integration of MR-Prioritized Genes and Spatial Correlations}\label{subsec:res_integration}
 
-Integration of MR-prioritized gene sets with spatial transcriptomics identified candidates with both genetic-association and spatial-context support.
+Integration of MR-prioritized gene sets with spatial transcriptomics identified candidates with both expression-linked prioritization and spatial-context support.
 
 \textbf{KCNAB2} emerged as a recurrent candidate with 100\% selection frequency in nested CV and measurable, though modest, spatial clustering.
 
@@ -441,8 +457,9 @@ Integration of MR-prioritized gene sets with spatial transcriptomics identified 
     \item \textbf{UBXN10} (ubiquitination): Highest Moran's I = 0.416 ($P < 0.001$)
 \end{itemize}
 
-\begin{table}[htbp]
+\begin{sidewaystable}[htbp]
     \caption{Spatial and MR-prioritized characteristics of candidate genes}\label{tab:spatial_genes}
+    \scriptsize
     \begin{tabular*}{\textwidth}{@{\extracolsep\fill}llcccc}
         \toprule
         Gene & Annotation & Selection Stability & Moran's I & Network Degree & Correlation (r) \\
@@ -460,8 +477,8 @@ Integration of MR-prioritized gene sets with spatial transcriptomics identified 
         BOK & Apoptosis & 100\% (5/5) & N.D. & - & - \\
         \botrule
     \end{tabular*}
-    \footnotetext{Note: N.D. = Not Determined; *** $P < 0.001$. Network degree centrality derives from the MR-prioritized network. Correlation represents Pearson correlation coefficient with immune-infiltration estimates.}
-\end{table}
+    \footnotetext{Note: N.D. = Not Determined; *** $P < 0.001$. Network degree centrality derives from the MR-prioritized network. Correlation represents Pearson correlation coefficient with immune-infiltration estimates. These entries identify candidates for follow-up and should not be read as causal or clinical validation.}
+\end{sidewaystable}
 
 \begin{table}[htbp]
     \caption{Univariate and multivariable Cox regression analysis in the TCGA discovery cohort (N=1,038)}\label{tab:cox_regression}
@@ -477,7 +494,7 @@ Integration of MR-prioritized gene sets with spatial transcriptomics identified 
         Stage (IV vs I) & 1.33 (1.09--1.61) & 0.005 & 1.35 (1.11--1.65) & 0.003 \\
         \botrule
     \end{tabular*}
-    \footnotetext{Note: Univariate and multivariable Cox regression analysis in the TCGA cohort including risk score, age, gender, and AJCC stage. \textsuperscript{a}Risk score was standardized before analysis. The HR represents the change in risk per standard-deviation increase in risk score. These retrospective associations require external and prospective validation before clinical interpretation. For GSE31210 traceability results, see Supplementary Table S9.}
+    \footnotetext{Note: Univariate and multivariable Cox regression analysis in the TCGA cohort including risk score, age, gender, and AJCC stage. \textsuperscript{a}Risk score was standardized before analysis. The HR represents the change in risk per standard-deviation increase in risk score. These retrospective associations require external and prospective validation before clinical interpretation. For GSE31210 traceability results, see Supplementary Table S13.}
 \end{table}
 
 \subsection{Public Protein-Expression Context}
@@ -487,21 +504,21 @@ We cross-referenced public immunohistochemistry images for protein-level context
 
 \subsection{Principal Findings}
 
-This study supports a conservative conclusion: C1Q/SPP1 is a reproducible macrophage-context traceability feature in public NSCLC resources. Across bulk transcriptomics, MR-based prioritization, spatial datasets, and retrospective outcome cohorts, the C1Q/SPP1 axis repeatedly marked immune-active versus macrophage-compartmentalized states. The evidence is internally coherent, but it does not establish a clinical assay, a treatment-selection rule, or a definitive mechanism.
+This study supports a conservative conclusion: C1Q/SPP1 is a cross-dataset macrophage-context traceability feature in public NSCLC resources. Across bulk transcriptomics, MR-based prioritization, spatial datasets, and retrospective outcome cohorts, the C1Q/SPP1 axis repeatedly marked immune-active versus macrophage-compartmentalized states. The evidence is internally coherent, but it does not establish a clinical assay, a treatment-selection rule, or a definitive mechanism.
 
-The principal findings were: (1) nested cross-validation identified a stable 95-feature set enriched for immune and macrophage-context signals; (2) MR prioritized several candidates, including \textit{C1QA} and \textit{KCNAB2}, but with the usual instrumental-variable caveats; (3) C1Q-family genes showed moderate spatial clustering, while \textit{SPP1} showed stronger spatial compartmentalization; (4) counterfactual scoring showed that the C1Q module is internally sensitive to \textit{C1QA} attenuation, without proving biological perturbation; and (5) retrospective model behavior was statistically detectable but modest, with external and immunotherapy-response results best interpreted as traceability rather than validation.
+The principal findings were: (1) nested cross-validation identified a stable 95-feature set enriched for immune and macrophage-context signals; (2) MR prioritized several candidates, including \textit{C1QA} and \textit{KCNAB2}, but with the usual instrumental-variable caveats; (3) C1Q-family genes showed moderate spatial clustering in patient-limited spatial data, while \textit{SPP1} showed stronger spatial compartmentalization; (4) counterfactual scoring showed that the C1Q module is internally sensitive to \textit{C1QA} attenuation, without proving biological perturbation; and (5) retrospective score behavior was statistically detectable but modest, with external and immunotherapy-response results best interpreted as traceability rather than validation.
 
 \subsection{Interpretation of the Evidence Chain}
 
-The strength of the study is not a single high-performing classifier. Rather, it is the convergence of several independent public-data views on the same macrophage-context axis. Bulk expression suggested a survival-associated immune program; MR prioritized genes that intersected with this program; spatial data placed C1Q and SPP1 in non-random local contexts; and small immunotherapy-treated cohorts showed directional response associations. This layered consistency makes the C1Q/SPP1 axis biologically plausible and worth further study.
+The strength of the study is not a single high-performing classifier. Rather, it is the convergence of several public-data views on the same macrophage-context axis. Bulk expression suggested a survival-associated immune program; MR prioritized genes that intersected with this program; spatial data placed C1Q and SPP1 in non-random local contexts; and small immunotherapy-treated cohorts showed directional response associations. This layered consistency makes the C1Q/SPP1 axis biologically plausible and worth further study.
 
-At the same time, each layer has limits. MR is not mechanism. Spatial autocorrelation is not cellular communication. A computational C1QA attenuation experiment is not a wet-lab perturbation. Small ICB cohorts are not clinical validation. For that reason, the manuscript should be read as a reproducible hypothesis-generating cancer-informatics study rather than as a completed biomarker-development paper.
+At the same time, each layer has limits. MR is not mechanism. Spatial autocorrelation is not cellular communication. A computational C1QA attenuation experiment is not a wet-lab perturbation. Small ICB cohorts are not clinical validation. For that reason, the manuscript should be read as a traceable, hypothesis-generating cancer-informatics study rather than as a completed biomarker-development paper.
 
 \subsection{Biological Plausibility of the C1Q/SPP1 Spatial Context}
 
 The biological plausibility of the C1Q/SPP1 axis rests on macrophage biology and spatial organization. Recent spatial transcriptomics studies have demonstrated the importance of spatial context in understanding immune microenvironments. Our finding that C1Q-associated regions track immune-marker context suggests that complement-associated macrophage states may mark immune-active local environments. This is a marker-context interpretation, not proof that C1Q itself drives therapeutic response.
 
-The complement system, traditionally viewed as part of innate immunity against pathogens, has emerged as a critical regulator of tumor immunity . B cells have also been associated with survival and immunotherapy response in other cancers \cite{petitprezCellsAreAssociated2020a, helminkCellsTertiaryLymphoid2020}. Studies have shown that complement components play dual roles in tumor immunity . C1Q can influence tumor progression through multiple mechanisms: (1) modulation of T cell responses, (2) regulation of macrophage polarization, (3) promotion of angiogenesis, and (4) facilitation of tumor cell migration and metastasis.
+The complement system, traditionally viewed as part of innate immunity against pathogens, has emerged as a context-dependent regulator of tumor immunity. B cells have also been associated with survival and immunotherapy response in other cancers \cite{petitprezCellsAreAssociated2020a, helminkCellsTertiaryLymphoid2020}. Complement components can accompany both immune activation and tumor-promoting inflammation; therefore, the C1Q signal should be interpreted in cellular and spatial context rather than as uniformly favorable or unfavorable.
 
 In our study, C1Q-associated macrophage contexts were often located near CD8-marker-positive contexts. This pattern is compatible with immune-active local environments, but it cannot distinguish recruitment, retention, shared upstream inflammation, or sampling structure. The appropriate conclusion is that C1Q marks a spatial immune context that deserves mechanistic follow-up.
 
@@ -531,21 +548,11 @@ We therefore describe \textit{KCNAB2} as a candidate context feature rather than
 
 Based on our findings, the most defensible hypothesis is that C1Q-enriched macrophage contexts, \textit{SPP1}-enriched macrophage contexts, and \textit{KCNAB2}-linked programs may represent partially distinct immune microenvironment states.
 
-These observations justify follow-up but not therapeutic targeting. The candidate status of \textit{KCNAB2} should be tested using cell-type-resolved protein assays, perturbation experiments, and prospective outcome cohorts.
-
-Our decision to highlight \textit{KCNAB2} was driven by its selection stability and MR-prioritized association. This makes it a candidate for further validation, not an established therapeutic target.
-
-Based on our findings, we propose two key hypotheses for the role of \textit{KCNAB2} in the NSCLC TME:
-
-\begin{enumerate}
-    \item \textbf{Metabolic-Immune Coupling}: \textit{KCNAB2} may be related to the metabolic fitness of macrophages in C1Q-enriched contexts by modulating potassium efflux, thereby supporting a plausible follow-up hypothesis in nutrient-depleted TME states.
-
-    \item \textbf{Spatial Scaffolding}: The spatial co-localization of \textit{KCNAB2} and C1Q suggests a structural role for ion channel regulators in organizing immune clusters, possibly through the regulation of cell adhesion or cytokine secretion.
-\end{enumerate}
+These observations justify follow-up but not therapeutic targeting. The candidate status of \textit{KCNAB2} should be tested using cell-type-resolved protein assays, perturbation experiments, and prospective outcome cohorts. Our decision to highlight \textit{KCNAB2} was driven by its selection stability and MR-prioritized association. This makes it a candidate for further validation, not an established therapeutic target or spatial organizer.
 
 \subsection{Machine Learning Model Behavior and Its Limits}
 
-Our systematic evaluation of seven machine-learning algorithms showed that model performance depends strongly on the metric used. XGBoost achieved the highest AUC (0.781), whereas several models had higher C-index values than AdaBoost. For this reason, the model comparison should not be used to claim clinical superiority of one algorithm. AdaBoost is retained only as a reference model for describing one reproducible score behavior.
+Our systematic evaluation across candidate algorithms showed that score behavior depends strongly on the metric used. XGBoost achieved the highest AUC (0.781), whereas several models had higher C-index values than AdaBoost. For this reason, the comparison should not be used to claim clinical superiority of one algorithm. AdaBoost is retained only as a reference model for describing one internally traceable score behavior.
 
 The modest time-dependent AUC values and moderate C-index indicate that the model captures some prognostic signal but is not ready for individual patient decision-making. The score is useful here as a traceability device for testing whether the C1Q/SPP1-associated feature set carries outcome-linked information.
 
@@ -555,7 +562,7 @@ The external evaluation in GSE31210 was directionally supportive but not definit
 
 \textbf{Translation Boundary}: The current evidence does not support clinical implementation. A future clinical-grade model would require a locked feature set, a locked cutoff, prospective validation, calibration assessment, decision-curve confirmation in clinically relevant populations, and comparison with stage-only and clinical-only baselines.
 
-\textbf{Biological Interpretation}: Nonlinear models may capture interactions among immune-context features, but algorithmic performance cannot be used as evidence of mechanism. The model results support a reproducible association between macrophage-context features and outcome-linked states.
+\textbf{Biological Interpretation}: Nonlinear models may capture interactions among immune-context features, but algorithmic performance cannot be used as evidence of mechanism. The model results support a retrospective association between macrophage-context features and outcome-linked states.
 
 \textbf{Prognostic Association}: The model demonstrates statistically detectable prognostic association in retrospective data (C-index 0.607, HR 1.43, 95\% CI: 1.21--1.70, $P < 0.001$), but its incremental value beyond routine clinical factors remains to be established rigorously.
 
@@ -582,11 +589,11 @@ Only after these steps would a simplified pathological or molecular panel be jus
 
 \subsubsection{Biological Rationale for Resistance}
 
-Our TME subtype analysis suggested that higher-risk contexts were enriched for immune-exclusion-associated programs, including SPP1-associated macrophage features. These observations may help generate hypotheses about ICI resistance, but they do not explain resistance mechanisms on their own.
+Our TME subtype analysis suggested that higher-score contexts were enriched for immune-exclusion-associated programs, including SPP1-associated macrophage features. These observations may help generate hypotheses about ICI resistance, but they do not explain resistance mechanisms on their own.
 
 \subsubsection{Limitations and Future Directions}
 
-Several limitations require emphasis. The primary survival analyses are retrospective and rely heavily on overall survival, which is affected by treatment heterogeneity, comorbidity, stage, and incomplete clinical annotation. The spatial datasets include few independent patients, and the large CosMx cell count should not be mistaken for a large number of independent biological replicates. The Visium dataset provides spatial context but not single-cell precision.
+Several limitations require emphasis. The primary survival analyses are retrospective and rely heavily on overall survival, which is affected by treatment heterogeneity, comorbidity, stage, and incomplete clinical annotation. The spatial datasets include few independent patients, and the large CosMx cell count should not be mistaken for a large number of independent biological replicates. The Visium dataset provides spatial context but not single-cell precision. Section-level concordance is therefore supportive context, not broad patient-level spatial validation.
 
 Regarding immunotherapy-response association, several considerations warrant discussion:
 
@@ -604,17 +611,17 @@ Future translational studies should prioritize a locked, FFPE-compatible assay; 
 
 Additional limitations include population imbalance in TCGA, incomplete treatment data, cross-platform technical variance, possible residual confounding, and the absence of wet-lab perturbation. The counterfactual scoring analysis is a sensitivity analysis only. The model has not been validated in neoadjuvant immunotherapy or prospective randomized settings.
 
-Overall, the study provides a reproducible public-data framework for tracing macrophage-context signals across molecular and spatial layers. Its most immediate value is hypothesis prioritization for future spatial and functional validation.
+Overall, the study provides a public-data framework for tracing macrophage-context signals across molecular and spatial layers. Its most immediate value is hypothesis prioritization for future spatial and functional validation.
 
 \section{Conclusions}\label{sec:conclusions}
 
-This study identifies C1Q/SPP1 as a reproducible macrophage-context traceability feature in public NSCLC resources. C1Q-family genes showed moderate spatial clustering, SPP1 showed stronger spatial compartmentalization, and retrospective model behavior suggested outcome-linked signal with modest discrimination. MR and counterfactual analyses support prioritization but do not prove mechanism. The findings are hypothesis-generating and require prospective, NSCLC-specific, spatially resolved, and experimental validation before clinical implementation or therapeutic targeting can be considered.
+This study identifies C1Q/SPP1 as a cross-dataset macrophage-context traceability feature in public NSCLC resources. C1Q-family genes showed moderate spatial clustering in patient-limited spatial data, SPP1 showed stronger spatial compartmentalization, and retrospective score behavior suggested outcome-linked signal with modest discrimination. MR and counterfactual analyses support prioritization but do not prove mechanism. The findings are hypothesis-generating and require prospective, NSCLC-specific, spatially resolved, and experimental validation before clinical implementation or therapeutic targeting can be considered.
 
 \section*{Supplementary Information}
 \textbf{Additional file 1: Supplementary Material.}
 Contains Supplementary Figures S1--S12 and Supplementary Tables S1--S13.
 \textbf{Figure S1:} Quality control and clustering analysis of spatial transcriptomics data.
-\textbf{Figure S2:} Machine learning model development and internal assessment details.
+\textbf{Figure S2:} Retrospective score development and internal assessment details.
 \textbf{Figure S3:} Functional enrichment analysis.
 \textbf{Figure S4:} Spatial expression patterns of immune checkpoint molecules.
 \textbf{Figure S5:} Pan-cancer exploratory traceability of core candidate genes.
@@ -625,19 +632,19 @@ Contains Supplementary Figures S1--S12 and Supplementary Tables S1--S13.
 \textbf{Figure S10:} Leave-one-out sensitivity analysis for MR-prioritized genes.
 \textbf{Figure S11:} Counterfactual C1QA scoring sensitivity analysis showing C1Q-score dependency and network-summary changes.
 \textbf{Figure S12:} Sensitivity analyses including dose-response, spatial scale dependency, and specificity ranking.
-\textbf{Table S1:} Model performance on training, internal cross-validation, test, and external sets.
+\textbf{Table S1:} Retrospective score behavior on training, internal cross-validation, test, and external sets.
 \textbf{Table S2:} List of stable features (genes) selected in 100\% of cross-validation folds.
 \textbf{Table S3:} Edge list of the eQTL-driven regulatory network.
 \textbf{Table S4:} List of stable features identified by nested cross-validation.
 \textbf{Table S5:} Spatial Autocorrelation (Moran's I) and Hotspot Analysis.
 \textbf{Table S6:} Correlation between hub gene expression and immune cell infiltration.
 \textbf{Table S7:} Mendelian Randomization analysis results.
-\textbf{Table S8:} Colocalization Analysis Results (COLOC).
-\textbf{Table S9:} Model performance in external cohorts.
+\textbf{Table S8:} TME-subtype differential-expression context.
+\textbf{Table S9:} External-cohort covariate summaries.
 \textbf{Table S10:} Cell-Type-Specific eQTL Analysis.
-\textbf{Table S11:} Pan-cancer prognostic traceability analysis of core candidate genes.
+\textbf{Table S11:} MR diagnostic parameters for prioritized genes.
 \textbf{Table S12:} Spatial Transcriptomics Sample Information (10x Visium + CosMx SMI).
-\textbf{Table S13:} Multivariable Cox Regression Analysis of the Prognostic Signature.
+\textbf{Table S13:} Multivariable Cox regression analysis of the retrospective score.
 
 \backmatter
 
@@ -671,7 +678,7 @@ The source-data manifest, processed analysis tables, manuscript files, figures, 
 Repository integrity checks and reproducibility notes are available at \url{https://github.com/morningLxj/spatial-immunotherapy-prediction}. The included script verifies the expected source-data archive, lists its contents, and writes a source-data inventory. Public-data acquisition and complete re-analysis from raw source repositories should be treated as a separate workflow and, if required by the journal or reviewers, archived as a versioned release before final publication.
 
 \bmhead{Reporting Guidelines}
-The manuscript was revised using STROBE principles for observational retrospective analyses and TRIPOD-AI considerations for prediction-model reporting where applicable. Because the work is a public-data evidence synthesis rather than a locked clinical prediction-model study, the model results are presented as exploratory model behavior.
+The manuscript was revised using STROBE principles for observational retrospective analyses and TRIPOD-AI considerations where applicable. Because the work is a public-data evidence synthesis rather than a locked clinical prediction-model study, the model results are presented as exploratory score behavior.
 
 \bmhead{Declaration of Conflicting Interests}
 The authors declare that they have no competing interests, financial or otherwise, that could influence the work reported in this paper.
