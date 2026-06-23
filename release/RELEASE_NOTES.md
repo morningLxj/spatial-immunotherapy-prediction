@@ -9,5 +9,4 @@
 - Added conservative evidence-boundary documentation.
 - Added lightweight source-data integrity check.
 
-This release is intended for pre-submission reviewer/editor inspection. It does not provide a clinical prediction tool or a complete raw-data-to-figure pipeline.
-
+This release is intended for pre-submission reviewer/editor inspection. It does not provide a clinical-use assay or a complete raw-data-to-figure pipeline.

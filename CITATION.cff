@@ -1,12 +1,12 @@
 cff-version: 1.2.0
-title: "C1Q/SPP1 Macrophage Spatial Context as a Reproducible Traceability Feature in Non-Small Cell Lung Cancer"
+title: "C1Q/SPP1 Macrophage Spatial Context as a Traceability Feature in Non-Small Cell Lung Cancer: A Public Multi-Cohort Cancer-Informatics Study"
 message: "If you use this repository, please cite the manuscript and repository."
 type: dataset
 authors:
   - family-names: "Zhou"
     given-names: "FX"
-repository-code: "https://github.com/morningLxj/c1q-spp1-nsclc-cancer-informatics"
-date-released: 2026-06-18
+repository-code: "https://github.com/morningLxj/spatial-immunotherapy-prediction"
+date-released: 2026-06-23
 license: "MIT"
 abstract: "Repository package for a conservative cancer-informatics evidence synthesis of C1Q/SPP1 macrophage-associated spatial context in public NSCLC resources. The repository provides manuscript files, figures, processed source-data tables, and traceability documentation; it is not a clinical implementation or treatment-selection tool."
 keywords:

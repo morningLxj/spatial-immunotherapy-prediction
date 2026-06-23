@@ -2,7 +2,7 @@
 
 Public repository for the manuscript:
 
-**C1Q/SPP1 Macrophage Spatial Context as a Cross-Dataset Traceability Feature in Non-Small Cell Lung Cancer: A Public Multi-Cohort Cancer-Informatics Evidence Synthesis**
+**C1Q/SPP1 Macrophage Spatial Context as a Traceability Feature in Non-Small Cell Lung Cancer: A Public Multi-Cohort Cancer-Informatics Study**
 
 This repository supports a conservative cancer-informatics evidence synthesis. The central claim is that the C1Q/SPP1 axis marks a cross-dataset macrophage-associated spatial context in public NSCLC resources. The repository is not intended to support clinical deployment, treatment selection, therapeutic targeting, or definitive causal mechanism claims.
 

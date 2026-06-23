@@ -19,6 +19,7 @@ Thumbs.db
 *.run.xml
 *.synctex.gz
 *.toc
+figures/docx_png/
 
 # Local environments
 .Rhistory
@@ -26,4 +27,3 @@ Thumbs.db
 .Rproj.user/
 .venv/
 __pycache__/
-
