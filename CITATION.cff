@@ -1,6 +1,6 @@
 cff-version: 1.2.0
-title: "C1Q/SPP1 Macrophage Spatial Context as a Traceability Feature in Non-Small Cell Lung Cancer: A Public Multi-Cohort Cancer-Informatics Study"
-message: "If you use this repository, please cite the manuscript and repository."
+title: "Convergent public-data evidence for C1Q-associated macrophage programs in non-small cell lung cancer: spatial organization and survival traceability"
+message: "If you use this PLOS ONE submission branch, please cite the manuscript and repository."
 type: dataset
 authors:
   - family-names: "Li"
@@ -15,12 +15,13 @@ authors:
 repository-code: "https://github.com/morningLxj/spatial-immunotherapy-prediction"
 date-released: 2026-06-23
 license: "MIT"
-abstract: "Repository package for a conservative cancer-informatics evidence synthesis of C1Q/SPP1 macrophage-associated spatial context in public NSCLC resources. The repository provides manuscript files, figures, processed source-data tables, and traceability documentation; it is not a clinical implementation or treatment-selection tool."
+abstract: "PLOS ONE submission repository for a retrospective public-data integration study of C1Q-associated macrophage programs in non-small cell lung cancer. The repository provides the PLOS ONE upload package, processed source-data archive, figure files, statements, and reproducibility documentation. The study is hypothesis-generating and does not claim a deployable clinical prediction tool."
 keywords:
-  - cancer informatics
+  - PLOS ONE
   - NSCLC
   - C1Q
-  - SPP1
-  - macrophage context
+  - macrophage
+  - public data
   - spatial transcriptomics
+  - survival traceability
   - reproducibility
