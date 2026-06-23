@@ -3,8 +3,15 @@ title: "C1Q/SPP1 Macrophage Spatial Context as a Traceability Feature in Non-Sma
 message: "If you use this repository, please cite the manuscript and repository."
 type: dataset
 authors:
-  - family-names: "Zhou"
-    given-names: "FX"
+  - family-names: "Li"
+    given-names: "Xiongjie"
+    orcid: "https://orcid.org/0009-0005-9507-6829"
+  - family-names: "Zhang"
+    given-names: "Fengyue"
+  - family-names: "Luo"
+    given-names: "Chaojia"
+  - family-names: "Xu"
+    given-names: "Xuan"
 repository-code: "https://github.com/morningLxj/spatial-immunotherapy-prediction"
 date-released: 2026-06-23
 license: "MIT"
