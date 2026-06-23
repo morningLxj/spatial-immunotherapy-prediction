@@ -66,7 +66,7 @@
 
 \section{Introduction}\label{sec:intro}
 
-Non-small cell lung cancer (NSCLC) remains a major cause of cancer mortality, and immune checkpoint blockade has improved outcomes for a subset of patients \cite{sungGlobalCancerStatistics2021b, chenNonsmallcellLungCancers2014, reckPembrolizumabChemotherapyPDL1positive2016, herbstAtezolizumabFirstlineTreatment2020, gandhiPembrolizumabChemotherapyMetastatic2018}. However, PD-L1 expression, tumor mutational burden, and bulk immune-expression summaries do not fully capture the spatial and cellular organization of the tumor microenvironment (TME) \cite{marabelleAssociationTumourMutational2020, topalianMechanismdrivenBiomarkersGuide2016}. A central cancer-informatics problem is therefore not simply to build another retrospective classifier, but to determine whether candidate immune signals remain interpretable when traced across independent data types. Spatial transcriptomics and single-cell technologies now make it possible to examine whether immune programs visible in bulk data also map to spatial contexts that can be traced across available datasets \cite{stahlVisualizationAnalysisGene2016, marxMethodYearSpatially2021, zilionisSinglecellTranscriptomicsHuman2019}.
+Non-small cell lung cancer (NSCLC) remains a major cause of cancer mortality \cite{sungGlobalCancerStatistics2021b, chenNonsmallcellLungCancers2014, reckPembrolizumabChemotherapyPDL1positive2016}. Immune checkpoint blockade has improved outcomes for a subset of patients \cite{herbstAtezolizumabFirstlineTreatment2020, gandhiPembrolizumabChemotherapyMetastatic2018}. However, PD-L1 expression, tumor mutational burden, and bulk immune-expression summaries do not fully capture the spatial and cellular organization of the tumor microenvironment (TME) \cite{marabelleAssociationTumourMutational2020, topalianMechanismdrivenBiomarkersGuide2016}. A central cancer-informatics problem is therefore not simply to build another retrospective classifier, but to determine whether candidate immune signals remain interpretable when traced across independent data types. Spatial transcriptomics and single-cell technologies now make it possible to examine whether immune programs visible in bulk data also map to spatial contexts that can be traced across available datasets \cite{stahlVisualizationAnalysisGene2016, marxMethodYearSpatially2021, zilionisSinglecellTranscriptomicsHuman2019}.
 
 C1q, encoded by \textit{C1QA}, \textit{C1QB}, and \textit{C1QC}, is produced largely by macrophage and dendritic-cell lineages in the TME. Prior work suggests that complement-associated macrophage states may accompany either immune activation or tumor-promoting inflammation, depending on context. \textit{SPP1}-positive macrophage programs, by contrast, are often linked to stromal remodeling and immune exclusion. These observations motivate a narrower and more testable question: can the C1Q/SPP1 macrophage axis be traced across public NSCLC transcriptomic, spatial, and clinical resources without overstating clinical or mechanistic certainty?
 
@@ -143,7 +143,7 @@ Bulk transcriptomic datasets were processed using dataset-appropriate normalizat
 
 \subsubsection{Statistical Analysis}
 
-All statistical analyses were performed using R and Python. Python-based data manipulation and visualization used Pandas \cite{mckinneyDataStructuresStatistical2010a}, NumPy \cite{harrisArrayProgrammingNumPy2020}, SciPy \cite{virtanenSciPy10Fundamental2020}, Matplotlib \cite{hunterMatplotlib2DGraphics2007}, and Seaborn \cite{waskomSeabornStatisticalData2021}. Machine-learning tasks used Scikit-learn \cite{pedregosaScikitlearnMachineLearning2011a}. Survival analysis used Kaplan--Meier curves and Cox proportional hazards models. Model performance was evaluated with time-dependent AUC, concordance index (C-index), and hazard ratios with 95\% confidence intervals where available. P-values computed from spot- or cell-level spatial summaries were treated as within-section descriptive statistics, not as independent patient-level inference. Data and code availability are detailed in the Declarations section.
+All statistical analyses were performed using R and Python. Python-based data manipulation and numerical computing used Pandas \cite{mckinneyDataStructuresStatistical2010a}, NumPy \cite{harrisArrayProgrammingNumPy2020}, and SciPy \cite{virtanenSciPy10Fundamental2020}. Visualization used Matplotlib \cite{hunterMatplotlib2DGraphics2007} and Seaborn \cite{waskomSeabornStatisticalData2021}. Machine-learning tasks used Scikit-learn \cite{pedregosaScikitlearnMachineLearning2011a}. Survival analysis used Kaplan--Meier curves and Cox proportional hazards models. Model performance was evaluated with time-dependent AUC, concordance index (C-index), and hazard ratios with 95\% confidence intervals where available. P-values computed from spot- or cell-level spatial summaries were treated as within-section descriptive statistics, not as independent patient-level inference. Data and code availability are detailed in the Declarations section.
 
 \subsection{Sample Size and Statistical Power}\label{subsec:power}
 
@@ -1148,9 +1148,8 @@ The authors thank the investigators and participants of the public datasets and 
         \oauthor{\bsnm{Poon}, \binits{H.}}:
         Multimodal {{AI}} generates virtual population for tumor microenvironment
         modeling.
-        Cell,
-        0092--867425013121
-        (2025)
+        Cell 189(2), 386--400.e19
+        (2026)
         \doiurl{10.1016/j.cell.2025.11.016}
     \end{botherref}
     \endbibitem
@@ -4192,7 +4191,9 @@ The authors thank the investigators and participants of the public datasets and 
             features accurately predicts multiple driver gene mutations in lung cancer
             pathology images}.
         \bjtitle{Cancer Research}
-        (\byear{2025})
+        \bvolume{86}(\bissue{5}),
+        \bfpage{1319}--\blpage{1337}
+        (\byear{2026})
         \doiurl{10.1158/0008-5472.CAN-25-0582}
     \end{barticle}
     \endbibitem
